@@ -1,0 +1,27 @@
+import { Poppins } from "next/font/google";
+import "./globals.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
+
+export const metadata = {
+  title: "Fisher Painting Inc",
+  description: "Commercial and residential painting and coatings.",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body className={poppins.className}>
+        <Header />
+        <main className="min-h-screen pt-24">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}
