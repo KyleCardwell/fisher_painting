@@ -67,7 +67,7 @@ export default function CareersPage() {
     <div className="bg-light">
       <section className="relative isolate overflow-hidden py-24 sm:py-28">
         <PlaceholderImage
-          src={images.careersBg}
+          src={images.home.careersBg}
           alt="Fisher Painting Inc careers"
           width={1920}
           height={1080}

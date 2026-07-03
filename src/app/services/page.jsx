@@ -9,7 +9,7 @@ const serviceSections = [
     description:
       "Transform your space with Fisher Painting Services' expert interior painting solutions.",
     bullets: ["Tenant Improvements", "Repaints", "New Commercial", "Residential", "Multi-Family"],
-    image: images.serviceInterior,
+    image: images.home.serviceInterior,
     buttonText: "View Interior Portfolio",
     buttonHref: "/portfolio/interior-painting",
   },
@@ -27,7 +27,7 @@ const serviceSections = [
       "Siding",
       "Residential",
     ],
-    image: images.serviceExterior,
+    image: images.home.serviceExterior,
     buttonText: "View Exterior Portfolio",
     buttonHref: "/portfolio/exterior-coatings",
   },
@@ -37,7 +37,7 @@ const serviceSections = [
     description:
       "Discover the timeless beauty and versatility of plaster coatings with Fisher Painting Services.",
     bullets: ["Gypsum based", "Lime-based", "Micro-cement"],
-    image: images.serviceEpoxy,
+    image: images.home.serviceEpoxy,
     buttonText: "View Plaster Portfolio",
     buttonHref: "/portfolio/plaster-coatings",
   },
@@ -47,7 +47,7 @@ const serviceSections = [
     description:
       "Enhance the natural beauty of your wood and other surfaces with our premium stain and transparent coating services.",
     bullets: ["Siding", "Case base doors", "CLT structure"],
-    image: images.heroAbout,
+    image: images.home.heroAbout,
     buttonText: "View Stain Portfolio",
     buttonHref: "/portfolio/stain-transparent-coatings",
   },
@@ -57,7 +57,7 @@ const serviceSections = [
     description:
       "Transform your interiors with the sophisticated and dynamic wallcovering solutions from Fisher Painting Services.",
     bullets: ["Wallpapers", "Standard commercial vinyl", "Graphics & murals", "Felt & acoustics"],
-    image: images.depositSmall1,
+    image: images.home.depositSmall1,
     buttonText: "View Wallcoverings Portfolio",
     buttonHref: "/portfolio/wallcoverings",
   },
@@ -68,7 +68,7 @@ export default function ServicesPage() {
     <div className="bg-light">
       <section className="relative isolate overflow-hidden py-24 sm:py-28">
         <PlaceholderImage
-          src={images.heroWide}
+          src={images.home.heroWide}
           alt="Fisher Painting Inc services background"
           width={1920}
           height={1080}

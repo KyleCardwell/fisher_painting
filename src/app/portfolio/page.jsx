@@ -15,7 +15,7 @@ export default function PortfolioPage() {
     <div className="bg-light">
       <section className="relative isolate overflow-hidden py-24 sm:py-28">
         <PlaceholderImage
-          src={images.heroWide}
+          src={images.home.heroWide}
           alt="Fisher Painting Inc portfolio"
           width={1920}
           height={1080}

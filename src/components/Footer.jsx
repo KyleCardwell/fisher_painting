@@ -60,7 +60,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block" aria-label="Fisher Painting Inc Home">
               <PlaceholderImage
-                src={images.logo}
+                src={images.logos.logo}
                 alt="Fisher Painting Inc Logo"
                 width={210}
                 height={60}

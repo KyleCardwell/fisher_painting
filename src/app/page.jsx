@@ -5,45 +5,72 @@ import { images } from "@/lib/images";
 const serviceCards = [
   {
     title: "Interior Painting",
-    image: images.serviceInterior,
+    image: images.home.serviceInterior,
     href: "/services/#interior-painting",
     description:
       "Clean, durable interior finishes for offices, homes, and high-traffic spaces throughout Utah.",
   },
   {
     title: "Exterior Painting",
-    image: images.serviceExterior,
+    image: images.home.serviceExterior,
     href: "/services/#exterior-coatings",
     description:
       "Boost your curb appeal with durable exterior painting built for Utah weather.",
   },
   {
     title: "Plaster Coatings",
-    image: images.serviceEpoxy,
+    image: images.home.serviceEpoxy,
     href: "/services/#plaster-coatings",
     description:
       "Discover the timeless beauty and versatility of custom plaster coating finishes.",
   },
   {
     title: "Wallcoverings",
-    image: images.depositSmall1,
+    image: images.home.depositSmall1,
     href: "/services/#wallcoverings",
     description:
       "Transform interiors with wallpapers, commercial vinyl, graphics, murals, and felt acoustics.",
   },
 ];
 
-const recentProjects = [images.project1, images.project2, images.project3, images.project4, images.project5, images.project6];
+const recentProjects = [
+  images.portfolio.project1,
+  images.portfolio.project2,
+  images.portfolio.project3,
+  images.portfolio.project4,
+  images.portfolio.project5,
+  images.portfolio.project6,
+];
 
 const teamMembers = [
-  { name: "Brent Fisher", role: "President", image: null },
-  { name: "Landon Fisher", role: "Project Director", image: null },
-  { name: "Dallen Fisher", role: "Pre Construction", image: null },
-  { name: "Marla Fisher", role: "HR & Accounting", image: null },
-  { name: "Matt Fisher", role: "Field Manager", image: null },
-  { name: "Conner Cardwell", role: "Pre Construction", image: null },
-  { name: "Jake Miller", role: "Field Manager", image: null },
-  { name: "Tom Gardiner", role: "Project Manager", image: null },
+  { name: "Brent Fisher", role: "President", image: images.employees.brent },
+  {
+    name: "Landon Fisher",
+    role: "Project Director",
+    image: images.employees.landon,
+  },
+  {
+    name: "Dallen Fisher",
+    role: "Pre Construction",
+    image: images.employees.dallen,
+  },
+  {
+    name: "Marla Fisher",
+    role: "HR & Accounting",
+    image: images.employees.marla,
+  },
+  { name: "Matt Fisher", role: "Field Manager", image: images.employees.matt },
+  {
+    name: "Connor Cardwell",
+    role: "Pre Construction",
+    image: images.employees.connor,
+  },
+  { name: "Jake Miller", role: "Field Manager", image: images.employees.jake },
+  {
+    name: "Tom Gardiner",
+    role: "Project Manager",
+    image: images.employees.tom,
+  },
 ];
 
 export default function HomePage() {
@@ -51,7 +78,7 @@ export default function HomePage() {
     <div className="bg-light">
       <section className="relative isolate flex min-h-[80vh] items-center overflow-hidden">
         <PlaceholderImage
-          src={images.heroBanner}
+          src={images.home.heroBanner}
           alt="Salt Lake City - Northern Utah"
           width={1920}
           height={1080}
@@ -83,11 +110,16 @@ export default function HomePage() {
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-10 flex items-end justify-between gap-4">
-          <h2 className="text-3xl font-bold text-primary sm:text-4xl">Services</h2>
+          <h2 className="text-3xl font-bold text-primary sm:text-4xl">
+            Services
+          </h2>
         </div>
         <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-4">
           {serviceCards.map((card) => (
-            <article key={card.title} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+            <article
+              key={card.title}
+              className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100"
+            >
               <div className="overflow-hidden rounded-xl">
                 <PlaceholderImage
                   src={card.image}
@@ -98,7 +130,9 @@ export default function HomePage() {
                   className="h-56 w-full object-cover"
                 />
               </div>
-              <h3 className="mt-4 text-xl font-semibold text-primary">{card.title}</h3>
+              <h3 className="mt-4 text-xl font-semibold text-primary">
+                {card.title}
+              </h3>
               <p className="mt-2 text-sm text-slate-600">{card.description}</p>
               <Link
                 href={card.href}
@@ -113,11 +147,17 @@ export default function HomePage() {
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-end justify-between gap-4">
-          <h2 className="text-3xl font-bold text-primary sm:text-4xl">Recent Projects</h2>
+          <h2 className="text-3xl font-bold text-primary sm:text-4xl">
+            Recent Projects
+          </h2>
         </div>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {recentProjects.map((projectImage, index) => (
-            <Link key={`recent-project-${index + 1}`} href="/portfolio" className="group relative block overflow-hidden rounded-2xl">
+            <Link
+              key={`recent-project-${index + 1}`}
+              href="/portfolio"
+              className="group relative block overflow-hidden rounded-2xl"
+            >
               <PlaceholderImage
                 src={projectImage}
                 alt={`Project ${index + 1}`}
@@ -146,7 +186,7 @@ export default function HomePage() {
 
       <section className="relative isolate overflow-hidden py-20">
         <PlaceholderImage
-          src={images.careersBg}
+          src={images.home.careersBg}
           alt="Your Career, Just a Click Away"
           width={1920}
           height={1080}
@@ -155,9 +195,12 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 -z-10 bg-black/55" />
         <div className="mx-auto w-full max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Your Career, Just a Click Away</h2>
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            Your Career, Just a Click Away
+          </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/90">
-            &quot;Seamlessly apply for your dream job with just a click, bringing opportunities closer to you.&quot;
+            &quot;Seamlessly apply for your dream job with just a click,
+            bringing opportunities closer to you.&quot;
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <Link
@@ -177,10 +220,15 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-primary sm:text-4xl">Our Team</h2>
+        <h2 className="text-3xl font-bold text-primary sm:text-4xl">
+          Our Team
+        </h2>
         <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {teamMembers.map((member) => (
-            <article key={member.name} className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+            <article
+              key={member.name}
+              className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100"
+            >
               <PlaceholderImage
                 src={member.image}
                 alt={member.name}
@@ -188,7 +236,9 @@ export default function HomePage() {
                 height={1024}
                 className="h-72 w-full rounded-xl object-cover"
               />
-              <h3 className="mt-4 text-lg font-semibold text-primary">{member.name}</h3>
+              <h3 className="mt-4 text-lg font-semibold text-primary">
+                {member.name}
+              </h3>
               <p className="mt-1 text-sm text-slate-600">{member.role}</p>
             </article>
           ))}
@@ -201,7 +251,10 @@ export default function HomePage() {
             <h2 className="text-2xl font-bold text-white sm:text-3xl">
               Ready to transform your space? Contact us today!
             </h2>
-            <a href="tel:+18016769222" className="mt-2 inline-block text-lg font-semibold text-white/95">
+            <a
+              href="tel:+18016769222"
+              className="mt-2 inline-block text-lg font-semibold text-white/95"
+            >
               (801) 676-9222
             </a>
           </div>

@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.fisherpaintinc.com",
       },
+      {
+        protocol: "https",
+        hostname: "pub-114aa5ba9d9e4ce58bfee3087d7dc2f7.r2.dev",
+      },
     ],
   },
 };

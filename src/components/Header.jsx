@@ -72,7 +72,7 @@ export default function Header() {
       <div className="mx-auto flex h-24 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link href="/" aria-label="Fisher Painting Inc Home" className="shrink-0">
           <PlaceholderImage
-            src={images.logo}
+            src={images.logos.logo}
             alt="Fisher Painting Inc Logo"
             width={210}
             height={60}
