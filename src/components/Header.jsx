@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
-import { ChevronDownIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { PhoneIcon } from '@heroicons/react/24/solid'
 import clsx from "clsx";
 import MobileNav from "./MobileNav";
 import { images } from "../lib/images";
@@ -136,7 +137,7 @@ export default function Header() {
           >
             Get A Quote
           </Link> */}
-          <Button href="tel:+18016769222" className="items-center gap-2">
+          <Button href="tel:+18016769222" className="items-center gap-2" variant="red">
             <PhoneIcon className="h-4 w-4" />
             (801) 676-9222
           </Button>

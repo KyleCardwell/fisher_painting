@@ -87,7 +87,7 @@ export default function AboutPage() {
         </h2>
         <div className="mt-8 overflow-hidden rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
           <PlaceholderImage
-            src={null}
+            src={images.employees.team}
             alt="Entire-Team-scaled.jpg"
             width={2560}
             height={1707}

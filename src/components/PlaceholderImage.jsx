@@ -11,6 +11,7 @@ export default function PlaceholderImage({
   sizes,
   priority,
   fill,
+  style,
 }) {
   const hasSrc = typeof src === "string" && src.trim().length > 0;
 
@@ -25,6 +26,7 @@ export default function PlaceholderImage({
         sizes={sizes}
         priority={priority}
         fill={fill}
+        style={style}
       />
     );
   }
@@ -38,10 +40,15 @@ export default function PlaceholderImage({
     .filter(Boolean)
     .join(" ");
 
-  const placeholderStyle = !fill && width && height ? { aspectRatio: `${width} / ${height}` } : undefined;
+  const placeholderStyle = {
+    ...(!fill && width && height ? { aspectRatio: `${width} / ${height}` } : {}),
+    ...(style || {}),
+  };
+
+  const resolvedPlaceholderStyle = Object.keys(placeholderStyle).length ? placeholderStyle : undefined;
 
   return (
-    <div className={placeholderClassName} style={placeholderStyle} aria-label={alt || "Image placeholder"}>
+    <div className={placeholderClassName} style={resolvedPlaceholderStyle} aria-label={alt || "Image placeholder"}>
       <span className="px-3 text-center">{alt || "Image placeholder"}</span>
     </div>
   );

@@ -1,14 +1,6 @@
 import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
-import { images } from "@/lib/images";
-
-const megaplexCards = Array.from({ length: 6 }, (_, index) => ({
-  id: index + 1,
-  title: "Megaplex Daybreak",
-  date: "Summer 2024",
-  href: "/portfolio",
-  image: null,
-}));
+import { images, portfolioCards } from "@/lib/images";
 
 export default function PortfolioPage() {
   return (
@@ -31,8 +23,8 @@ export default function PortfolioPage() {
 
       <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {megaplexCards.map((card) => (
-            <Link key={card.id} href={card.href} className="group block">
+          {portfolioCards.map((card) => (
+            <Link key={card.title} href={card.href} className="group block">
               <article className="relative overflow-hidden rounded-2xl">
                 <PlaceholderImage
                   src={card.image}
