@@ -11,6 +11,8 @@ module.exports = {
         primary: "#1a1a2e",
         accent: "#4a90d9",
         light: "#f5f5f5",
+        primaryButton: "#F10507",
+        hoverButton: "#FFFFFF",
       },
       fontFamily: {
         sans: ["Poppins", "sans-serif"],

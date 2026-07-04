@@ -7,12 +7,16 @@ import { ChevronDownIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import MobileNav from "./MobileNav";
 import { images } from "../lib/images";
+import Button from "./Button";
 
 const servicesLinks = [
   { label: "Interior Painting", href: "/services/#interior-painting" },
   { label: "Exterior Coatings", href: "/services/#exterior-coatings" },
   { label: "Plaster Coatings", href: "/services/#plaster-coatings" },
-  { label: "Stain & Transparent Coatings", href: "/services/#stain-transparent-coatings" },
+  {
+    label: "Stain & Transparent Coatings",
+    href: "/services/#stain-transparent-coatings",
+  },
   { label: "Wallcoverings", href: "/services/#wallcoverings" },
 ];
 
@@ -23,7 +27,10 @@ const portfolioLinks = [
   { label: "Interior Painting", href: "/portfolio/interior-painting" },
   { label: "Exterior Coatings", href: "/portfolio/exterior-coatings" },
   { label: "Plaster Coatings", href: "/portfolio/plaster-coatings" },
-  { label: "Stain & Transparent Coatings", href: "/portfolio/stain-transparent-coatings" },
+  {
+    label: "Stain & Transparent Coatings",
+    href: "/portfolio/stain-transparent-coatings",
+  },
   { label: "Wallcoverings", href: "/portfolio/wallcoverings" },
 ];
 
@@ -66,11 +73,15 @@ export default function Header() {
     <header
       className={clsx(
         "fixed inset-x-0 top-0 z-50 bg-white transition-shadow duration-200",
-        scrolled ? "shadow-md" : "shadow-none"
+        scrolled ? "shadow-md" : "shadow-none",
       )}
     >
       <div className="mx-auto flex h-24 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" aria-label="Fisher Painting Inc Home" className="shrink-0">
+        <Link
+          href="/"
+          aria-label="Fisher Painting Inc Home"
+          className="shrink-0"
+        >
           <PlaceholderImage
             src={images.logos.logo}
             alt="Fisher Painting Inc Logo"
@@ -82,39 +93,59 @@ export default function Header() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-6">
-          <Link href="/" className="text-sm font-semibold text-slate-700 hover:text-accent">
+          <Link
+            href="/"
+            className="text-sm font-semibold text-slate-700 hover:text-accent"
+          >
             Home
           </Link>
-          <Link href="/about" className="text-sm font-semibold text-slate-700 hover:text-accent">
+          <Link
+            href="/about"
+            className="text-sm font-semibold text-slate-700 hover:text-accent"
+          >
             About
           </Link>
           <Dropdown label="Services" items={servicesLinks} />
           <Dropdown label="Portfolio" items={portfolioLinks} />
-          <Link href="/contact" className="text-sm font-semibold text-slate-700 hover:text-accent">
+          <Link
+            href="/contact"
+            className="text-sm font-semibold text-slate-700 hover:text-accent"
+          >
             Contact
           </Link>
-          <Link href="/careers" className="text-sm font-semibold text-slate-700 hover:text-accent">
+          <Link
+            href="/careers"
+            className="text-sm font-semibold text-slate-700 hover:text-accent"
+          >
             Careers
           </Link>
         </nav>
 
         <div className="hidden lg:flex items-center gap-4">
-          <a
+          {/* <a
             href="tel:+18016769222"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+            // className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+            className="inline-flex items-center gap-2 rounded-3xl bg-primaryButton px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-hoverButton hover:border-hoverButton hover:border"
           >
             <PhoneIcon className="h-4 w-4" />
             (801) 676-9222
-          </a>
-          <Link
+          </a> */}
+          {/* <Link
             href="/contact"
-            className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#3b7fc4]"
+            className="rounded-3xl bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#3b7fc4]"
           >
             Get A Quote
-          </Link>
+          </Link> */}
+          <Button href="tel:+18016769222" className="items-center gap-2">
+            <PhoneIcon className="h-4 w-4" />
+            (801) 676-9222
+          </Button>
         </div>
 
-        <MobileNav servicesLinks={servicesLinks} portfolioLinks={portfolioLinks} />
+        <MobileNav
+          servicesLinks={servicesLinks}
+          portfolioLinks={portfolioLinks}
+        />
       </div>
     </header>
   );

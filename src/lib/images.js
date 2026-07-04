@@ -18,7 +18,7 @@ export const imageFolders = {
   home: "root/home",
   employees: "root/employees",
   logos: "root/logos",
-  portfolio: "root/portfolio",
+  portfolio: "root/home/portfolio",
 };
 
 export const r2Image = (folder, filename) => withImageBase(joinPath(folder, filename));
@@ -52,16 +52,17 @@ export const images = {
     tom: "Tom-Gardiner-scaled.jpg",
   }),
   logos: buildImageGroup(imageFolders.logos, {
-    logo: null,
+    logoFull: null,
+    logoSmall: null,
     favicon: null,
   }),
   portfolio: buildImageGroup(imageFolders.portfolio, {
-    project1: null,
-    project2: null,
-    project3: null,
-    project4: null,
-    project5: null,
-    project6: null,
+    project1: "project-1.webp",
+    project2: "project-2.webp",
+    project3: "project-3.webp",
+    project4: "project-4.webp",
+    project5: "project-5.webp",
+    project6: "project-6.webp",
   }),
 };
 
