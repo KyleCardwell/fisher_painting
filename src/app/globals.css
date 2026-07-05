@@ -17,3 +17,13 @@ a {
 section[id] {
   scroll-margin-top: 7rem;
 }
+
+.home-split-img-left {
+  clip-path: polygon(0 0, 100% 0, 50% 100%, 0 100%);
+  z-index: 1;
+}
+
+.home-split-img-right {
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
+  z-index: 2;
+}

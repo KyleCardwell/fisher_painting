@@ -80,15 +80,28 @@ export default function HomePage() {
   return (
     <div className="bg-white">
       <section className="relative isolate flex min-h-[80vh] items-center overflow-hidden">
-        <PlaceholderImage
-          src={images.home.heroBanner}
-          alt="Salt Lake City - Northern Utah"
-          width={1920}
-          height={1080}
-          sizes="100vw"
-          priority
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
+        <div className="absolute inset-0 -z-20 overflow-hidden">
+          <div className="home-split-img-left absolute inset-y-0 left-0 w-2/3">
+            <PlaceholderImage
+              src={images.home.heroWide}
+              alt="Salt Lake City and Wasatch Mountains"
+              fill
+              sizes="(max-width: 768px) 80vw, 66vw"
+              priority
+              className="object-cover"
+            />
+          </div>
+          <div className="home-split-img-right absolute inset-y-0 right-0 w-2/3">
+            <PlaceholderImage
+              src={images.home.heroSouth}
+              alt="Southern Utah red rocks"
+              fill
+              sizes="(max-width: 768px) 80vw, 66vw"
+              priority
+              className="object-cover"
+            />
+          </div>
+        </div>
         <div className="absolute inset-0 -z-10 bg-black/50" />
         <div className="mx-auto w-full max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="max-w-4xl">
@@ -246,7 +259,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] sm:text-4xl">
             Your Career, Just a Click Away
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+          <p className="mx-auto mt-4 max-w-2xl text-base lg:text-2xl leading-7 text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
             &quot;Seamlessly apply for your dream job with just a click,
             bringing opportunities closer to you.&quot;
           </p>
