@@ -1,4 +1,9 @@
 import Link from "next/link";
+import {
+  EnvelopeIcon,
+  MapPinIcon,
+  PhoneIcon,
+} from "@heroicons/react/24/outline";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { images } from "../lib/images";
 
@@ -11,12 +16,23 @@ const quickLinks = [
   { label: "Careers", href: "/careers" },
 ];
 
-const serviceLinks = [
-  { label: "Interior Painting", href: "/services/#interior-painting" },
-  { label: "Exterior Coatings", href: "/services/#exterior-coatings" },
-  { label: "Plaster Coatings", href: "/services/#plaster-coatings" },
-  { label: "Stain & Transparent", href: "/services/#stain-transparent-coatings" },
-  { label: "Wallcoverings", href: "/services/#wallcoverings" },
+const contactLinks = [
+  {
+    label: "687 W 6960 S,\nMidvale, UT 84047",
+    href: "https://maps.app.goo.gl/hrVTEGF2J41vcLub6",
+    icon: MapPinIcon,
+    external: true,
+  },
+  {
+    label: "office@fisherpaintinc.com",
+    href: "mailto:office@fisherpaintinc.com",
+    icon: EnvelopeIcon,
+  },
+  {
+    label: "(801) 676-9222",
+    href: "tel:+18016769222",
+    icon: PhoneIcon,
+  },
 ];
 
 const socialLinks = [
@@ -53,28 +69,18 @@ const socialLinks = [
 ];
 
 export default function Footer() {
-  return (
-    <footer className="bg-primary text-slate-200">
-      <div className="mx-auto w-full max-w-7xl px-4 pb-8 pt-14 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
-          <div>
-            <Link href="/" className="inline-block" aria-label="Fisher Painting Inc Home">
-              <PlaceholderImage
-                src={images.logos.logo}
-                alt="Fisher Painting Inc Logo"
-                width={210}
-                height={60}
-                className="h-auto w-[180px] rounded bg-white p-1"
-              />
-            </Link>
-            <p className="mt-4 max-w-xs text-sm text-slate-300">
-              Professional painting and coatings for commercial and residential projects across Utah.
-            </p>
-          </div>
+  const year = new Date().getFullYear();
 
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+  return (
+    <footer className="bg-[#1C1D1E] text-[#BEBEBE]">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[62fr_1fr_34fr] lg:gap-[60px] lg:px-8 lg:py-40">
+        <div className="space-y-10">
+          <h2 className="text-3xl font-normal leading-tight text-white">
+            Quick Links
+          </h2>
+
+          <nav aria-label="Footer navigation">
+            <ul className="flex flex-col gap-3 text-base leading-6 md:flex-row lg:flex-wrap lg:gap-x-10 lg:gap-y-4">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="hover:text-white">
@@ -83,57 +89,77 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">Services</h3>
-            <ul className="space-y-2 text-sm">
-              {serviceLinks.map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-white">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Link href="/" className="inline-flex" aria-label="Fisher Painting Inc Home">
+            <PlaceholderImage
+              src={images.logos.logoWhite}
+              alt="Fisher Painting Inc"
+              width={200}
+              height={200}
+              className="h-auto w-[160px] sm:w-[200px]"
+            />
+          </Link>
 
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">Contact Info</h3>
-            <div className="space-y-2 text-sm text-slate-300">
-              <p>
-                <a href="tel:+18016769222" className="hover:text-white">
-                  (801) 676-9222
-                </a>
-              </p>
-              <p>
-                <a href="mailto:office@fisherpaintinc.com" className="hover:text-white">
-                  office@fisherpaintinc.com
-                </a>
-              </p>
-              <p>687 W 6960 S, Midvale, UT 84047</p>
-            </div>
-
-            <div className="mt-5 flex items-center gap-3">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
-            </div>
+          <div className="space-y-1 text-base leading-6">
+            <p>© {year} Fisher Paint Inc. All Rights Reserved.</p>
+            <p className="text-xl leading-7">
+              Created by{" "}
+              <a
+                href="https://daviscreate.com"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-white"
+              >
+                Davis Designs
+              </a>
+            </p>
           </div>
         </div>
 
-        <div className="mt-10 border-t border-white/20 pt-6 text-xs text-slate-400 sm:flex sm:items-center sm:justify-between">
-          <p>© 2025 Fisher Painting Inc. All Rights Reserved.</p>
-          <p className="mt-2 sm:mt-0">Website by Davis Designs</p>
+        <div className="hidden justify-center lg:flex" aria-hidden="true">
+          <div className="h-full w-px bg-[#BEBEBE]/35" />
+        </div>
+
+        <div className="space-y-10">
+          <h2 className="text-3xl font-normal leading-tight text-white">
+            Contact Us
+          </h2>
+
+          <ul className="space-y-5 text-xl leading-[1.5]">
+            {contactLinks.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <li key={item.href}>
+                  <a
+                    href={item.href}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noreferrer" : undefined}
+                    className="flex items-start gap-3 hover:text-white"
+                  >
+                    <Icon className="mt-1 h-6 w-6 shrink-0 text-fisherRed" aria-hidden="true" />
+                    <span className="whitespace-pre-line">{item.label}</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="flex items-center gap-5">
+            {socialLinks.map((social) => (
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-fisherRed bg-fisherRed text-white transition-colors hover:bg-white hover:text-fisherRed"
+                aria-label={social.name}
+              >
+                {social.icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
