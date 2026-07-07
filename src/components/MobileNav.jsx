@@ -2,99 +2,154 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation";
+import {
+  Bars3Icon,
+  ChevronDownIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import clsx from "clsx";
 
-function NavSection({ title, links, onClose }) {
+const getPathFromHref = (href) => href.split("#")[0];
+
+const isActivePath = (pathname, href) => {
+  const hrefPath = getPathFromHref(href);
+
+  if (hrefPath === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === hrefPath || pathname.startsWith(`${hrefPath}/`);
+};
+
+function NavLink({ href, children, onClose, inset = false, active = false }) {
   return (
-    <div>
-      <p className="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500">{title}</p>
-      <div className="space-y-2">
-        {links.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            onClick={onClose}
-            className="block rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100"
-          >
-            {link.label}
-          </Link>
-        ))}
-      </div>
+    <Link
+      href={href}
+      onClick={onClose}
+      aria-current={active ? "page" : undefined}
+      className={clsx(
+        "block border-b border-[#efefef] py-[15px] text-base font-medium leading-[1.2] hover:bg-fisherRed hover:text-white",
+        active ? "bg-fisherRed text-white" : "text-[#676767]",
+        inset ? "px-10" : "px-5",
+      )}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function NavSection({ title, links, onClose, active = false }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="border-b border-[#efefef]">
+      <button
+        type="button"
+        onClick={() => setExpanded((value) => !value)}
+        className={clsx(
+          "flex w-full items-center justify-between px-5 py-[15px] text-left text-base font-medium leading-[1.2] hover:bg-fisherRed hover:text-white",
+          expanded || active ? "bg-fisherRed text-white" : "text-[#676767]",
+        )}
+        aria-expanded={expanded}
+        aria-current={active ? "page" : undefined}
+      >
+        {title}
+        <ChevronDownIcon
+          className={clsx(
+            "h-4 w-4 transition-transform",
+            expanded && "rotate-180",
+          )}
+        />
+      </button>
+      {expanded && (
+        <div className="bg-white">
+          {links.map((link) => (
+            <NavLink key={link.href} href={link.href} onClose={onClose} inset>
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
-export default function MobileNav({ servicesLinks, portfolioLinks }) {
+export default function MobileNav({ servicesLinks }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <div className="lg:hidden">
+    <div className="z-10 lg:hidden">
       <button
         type="button"
-        onClick={() => setOpen(true)}
-        className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100"
-        aria-label="Open menu"
+        onClick={() => setOpen((value) => !value)}
+        className="inline-flex h-[46px] w-[46px] items-center justify-center bg-fisherRed text-white transition-colors hover:bg-[#1C1D1E]"
+        aria-label={open ? "Close menu" : "Open menu"}
+        aria-expanded={open}
       >
-        <Bars3Icon className="h-7 w-7" />
+        {open ? (
+          <XMarkIcon className="h-[30px] w-[30px]" />
+        ) : (
+          <Bars3Icon className="h-[30px] w-[30px]" />
+        )}
       </button>
 
-      <div
+      <nav
         className={clsx(
-          "fixed inset-0 z-40 bg-slate-900/40 transition-opacity",
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+          "absolute inset-x-0 top-full z-40 grid overflow-hidden bg-white shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-[grid-template-rows,transform] duration-300 ease-out",
+          open
+            ? "pointer-events-auto grid-rows-[1fr] translate-y-0"
+            : "pointer-events-none grid-rows-[0fr] -translate-y-1",
         )}
-        onClick={() => setOpen(false)}
-      />
-
-      <aside
-        className={clsx(
-          "fixed right-0 top-0 z-50 h-full w-[85%] max-w-sm bg-white p-6 shadow-2xl transition-transform duration-300",
-          open ? "translate-x-0" : "translate-x-full"
-        )}
+        aria-label="Mobile navigation"
       >
-        <div className="mb-6 flex items-center justify-between">
-          <p className="text-sm font-bold uppercase tracking-wide text-slate-500">Menu</p>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="rounded-md p-2 text-slate-700 hover:bg-slate-100"
-            aria-label="Close menu"
-          >
-            <XMarkIcon className="h-6 w-6" />
-          </button>
+        <div className="min-h-0 overflow-hidden">
+          <div className="mx-auto max-h-[calc(100vh-5rem)] w-full max-w-7xl overflow-y-auto sm:max-h-[calc(100vh-6rem)]">
+            <NavLink
+              href="/"
+              onClose={() => setOpen(false)}
+              active={isActivePath(pathname, "/")}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              href="/about"
+              onClose={() => setOpen(false)}
+              active={isActivePath(pathname, "/about")}
+            >
+              About
+            </NavLink>
+            <NavSection
+              title="Services"
+              links={servicesLinks}
+              onClose={() => setOpen(false)}
+              active={isActivePath(pathname, "/services")}
+            />
+            <NavLink
+              href="/portfolio"
+              onClose={() => setOpen(false)}
+              active={isActivePath(pathname, "/portfolio")}
+            >
+              Portfolio
+            </NavLink>
+            <NavLink
+              href="/contact"
+              onClose={() => setOpen(false)}
+              active={isActivePath(pathname, "/contact")}
+            >
+              Contact
+            </NavLink>
+            <NavLink
+              href="/careers"
+              onClose={() => setOpen(false)}
+              active={isActivePath(pathname, "/careers")}
+            >
+              Careers
+            </NavLink>
+          </div>
         </div>
-
-        <div className="space-y-6 overflow-y-auto pb-12">
-          <NavSection
-            title="Pages"
-            onClose={() => setOpen(false)}
-            links={[
-              { label: "Home", href: "/" },
-              { label: "About", href: "/about" },
-              { label: "Services", href: "/services" },
-              { label: "Portfolio", href: "/portfolio" },
-              { label: "Contact", href: "/contact" },
-              { label: "Careers", href: "/careers" },
-            ]}
-          />
-
-          <NavSection title="Services" links={servicesLinks} onClose={() => setOpen(false)} />
-          <NavSection title="Portfolio" links={portfolioLinks} onClose={() => setOpen(false)} />
-
-          <Link
-            href="/contact"
-            onClick={() => setOpen(false)}
-            className="block rounded-lg bg-accent px-4 py-3 text-center text-sm font-semibold text-white"
-          >
-            Get A Quote
-          </Link>
-
-          <a href="tel:+18016769222" className="block text-center text-sm font-semibold text-primary">
-            (801) 676-9222
-          </a>
-        </div>
-      </aside>
+      </nav>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { PhoneIcon } from '@heroicons/react/24/solid'
+import { PhoneIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import MobileNav from "./MobileNav";
 import { images } from "../lib/images";
@@ -40,17 +40,17 @@ function Dropdown({ label, items }) {
     <div className="group relative">
       <button
         type="button"
-        className="inline-flex items-center gap-1 text-sm font-semibold text-slate-700 transition-colors hover:text-accent"
+        className="inline-flex items-center gap-1 text-base font-medium leading-[1.2] text-[#676767] transition-colors hover:text-fisherRed"
       >
         {label}
         <ChevronDownIcon className="h-4 w-4" />
       </button>
-      <div className="invisible absolute left-0 top-full z-50 mt-2 w-64 rounded-xl border border-slate-200 bg-white p-2 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:opacity-100">
+      <div className="invisible absolute left-0 top-full z-50 mt-4 w-72 bg-white p-2 opacity-0 shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-150 group-hover:visible group-hover:opacity-100">
         {items.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="block rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-primary"
+            className="block px-4 py-[15px] text-base font-medium leading-[1.2] text-[#676767] hover:bg-fisherRed hover:text-white"
           >
             {item.label}
           </Link>
@@ -77,78 +77,90 @@ export default function Header() {
         scrolled ? "shadow-md" : "shadow-none",
       )}
     >
-      <div className="mx-auto flex h-24 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:min-h-[120px] lg:gap-8 lg:px-8 lg:py-[30px]">
+        <div className="z-10 lg:hidden">
+          <Button
+            href="tel:+18016769222"
+            className="h-11 w-11 min-w-11 items-center justify-center p-0 text-white hover:text-white sm:hidden [&_svg]:block"
+            variant="red"
+            aria-label="Call Fisher Painting"
+          >
+            <PhoneIcon
+              className="h-5 w-5 shrink-0 fill-current text-white"
+              aria-hidden="true"
+            />
+          </Button>
+          <Button
+            href="tel:+18016769222"
+            className="hidden h-11 shrink-0 items-center gap-2 whitespace-nowrap px-4 py-0 text-sm leading-none text-white hover:text-white sm:inline-flex lg:hidden"
+            variant="red"
+          >
+            <PhoneIcon className="h-4 w-4 text-white" />
+            (801) 676-9222
+          </Button>
+        </div>
+
         <Link
           href="/"
           aria-label="Fisher Painting Inc Home"
-          className="shrink-0"
+          className="absolute left-1/2 -translate-x-1/2 lg:static lg:shrink-0 lg:translate-x-0"
         >
           <PlaceholderImage
             src={images.logos.logo}
             alt="Fisher Painting Inc Logo"
             width={210}
             height={60}
-            className="h-auto w-[180px] sm:w-[210px]"
+            className="h-auto w-[190px] max-w-full sm:w-[210px] lg:w-[210px]"
             priority
           />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden items-center gap-[35px] lg:flex">
           <Link
             href="/"
-            className="text-sm font-semibold text-slate-700 hover:text-accent"
+            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
           >
             Home
           </Link>
           <Link
             href="/about"
-            className="text-sm font-semibold text-slate-700 hover:text-accent"
+            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
           >
             About
           </Link>
           <Dropdown label="Services" items={servicesLinks} />
-          <Link href="/portfolio" className="text-sm font-semibold text-slate-700 hover:text-accent">
+          <Link
+            href="/portfolio"
+            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
+          >
             Portfolio
           </Link>
           <Link
             href="/contact"
-            className="text-sm font-semibold text-slate-700 hover:text-accent"
+            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
           >
             Contact
           </Link>
           <Link
             href="/careers"
-            className="text-sm font-semibold text-slate-700 hover:text-accent"
+            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
           >
             Careers
           </Link>
         </nav>
 
-        <div className="hidden lg:flex items-center gap-4">
-          {/* <a
+        <div className="hidden items-center gap-4 lg:flex">
+          <Button
             href="tel:+18016769222"
-            // className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-            className="inline-flex items-center gap-2 rounded-3xl bg-primaryButton px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-hoverButton hover:border-hoverButton hover:border"
+            className="items-center gap-2"
+            variant="red"
           >
-            <PhoneIcon className="h-4 w-4" />
-            (801) 676-9222
-          </a> */}
-          {/* <Link
-            href="/contact"
-            className="rounded-3xl bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[#3b7fc4]"
-          >
-            Get A Quote
-          </Link> */}
-          <Button href="tel:+18016769222" className="items-center gap-2" variant="red">
             <PhoneIcon className="h-4 w-4" />
             (801) 676-9222
           </Button>
         </div>
 
-        <MobileNav
-          servicesLinks={servicesLinks}
-          portfolioLinks={portfolioLinks}
-        />
+        <MobileNav servicesLinks={servicesLinks} />
       </div>
     </header>
   );

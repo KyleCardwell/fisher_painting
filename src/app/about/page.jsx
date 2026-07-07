@@ -56,7 +56,7 @@ export default function AboutPage() {
         <h2 className="text-3xl font-bold text-primary sm:text-4xl">
           Meet the Team
         </h2>
-        <div className="mt-8 overflow-hidden rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+        <div className="mt-8 overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-100">
           <PlaceholderImage
             src={images.employees.team}
             alt="Entire-Team-scaled.jpg"
