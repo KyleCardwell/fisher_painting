@@ -19,6 +19,7 @@ export const imageFolders = {
   homeServices: "root/home/services",
   logos: "root/logos",
   portfolio: "root/portfolio",
+  about: "root/about",
 };
 
 export const r2Image = (folder, filename) => withImageBase(joinPath(folder, filename));
@@ -75,6 +76,10 @@ export const images = {
     project4: "project-4.webp",
     project5: "project-5.webp",
     project6: "project-6.webp",
+  }),
+  about: buildImageGroup(imageFolders.about, {
+    banner: 'Western-32.webp',
+    project: 'i-M-iqYF.webp'
   }),
 };
 
