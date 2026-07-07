@@ -8,6 +8,7 @@ html {
 
 body {
   @apply bg-light font-sans text-slate-900 antialiased;
+  overflow-x: clip;
 }
 
 a {
@@ -26,4 +27,20 @@ section[id] {
 .home-split-img-right {
   clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
   z-index: 2;
+}
+
+.career-banner-image {
+  width: max(1920px, 100vw);
+  max-width: none;
+  transform: translate(calc(-50% - 200px), -50%);
+}
+
+.team-scroll {
+  scrollbar-width: none;
+  scroll-padding-inline: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.team-scroll::-webkit-scrollbar {
+  display: none;
 }

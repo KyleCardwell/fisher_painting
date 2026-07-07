@@ -10,10 +10,10 @@ export default function Button({
   const variants = {
     red: `
   text-white
-    bg-redButtonBg
-    border-redButtonBg
-    hover:text-redButtonBg
-    hover:border-redButtonBg
+    bg-fisherRed
+    border-fisherRed
+    hover:text-fisherRed
+    hover:border-fisherRed
   `,
     black: `
     text-white
@@ -28,7 +28,7 @@ export default function Button({
     border-blackButtonBg
     hover:text-white
     hover:border-white
-    hover:bg-blackButtonBg
+    hover:bg-black
   `,
   };
 

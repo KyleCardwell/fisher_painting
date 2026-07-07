@@ -107,7 +107,9 @@ export default function Header() {
             About
           </Link>
           <Dropdown label="Services" items={servicesLinks} />
-          <Dropdown label="Portfolio" items={portfolioLinks} />
+          <Link href="/portfolio" className="text-sm font-semibold text-slate-700 hover:text-accent">
+            Portfolio
+          </Link>
           <Link
             href="/contact"
             className="text-sm font-semibold text-slate-700 hover:text-accent"

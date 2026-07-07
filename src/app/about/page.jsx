@@ -1,37 +1,8 @@
 import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { images } from "@/lib/images";
-
-const teamMembers = [
-  { name: "Brent Fisher", role: "President", image: images.employees.brent },
-  {
-    name: "Landon Fisher",
-    role: "Project Director",
-    image: images.employees.landon,
-  },
-  {
-    name: "Dallen Fisher",
-    role: "Pre Construction",
-    image: images.employees.dallen,
-  },
-  {
-    name: "Marla Fisher",
-    role: "HR & Accounting",
-    image: images.employees.marla,
-  },
-  { name: "Matt Fisher", role: "Field Manager", image: images.employees.matt },
-  {
-    name: "Conner Cardwell",
-    role: "Pre Construction",
-    image: images.employees.connor,
-  },
-  { name: "Jake Miller", role: "Field Manager", image: images.employees.jake },
-  {
-    name: "Tom Gardiner",
-    role: "Project Manager",
-    image: images.employees.tom,
-  },
-];
+import { teamMembers } from "@/lib/constants";
+import TeamCarousel from "@/components/TeamCarousel";
 
 export default function AboutPage() {
   return (
@@ -94,26 +65,7 @@ export default function AboutPage() {
             className="h-auto w-full rounded-xl object-cover"
           />
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {teamMembers.map((member) => (
-            <article
-              key={member.name}
-              className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100"
-            >
-              <PlaceholderImage
-                src={member.image}
-                alt={member.name}
-                width={683}
-                height={1024}
-                className="h-72 w-full rounded-xl object-cover"
-              />
-              <h3 className="mt-4 text-lg font-semibold text-primary">
-                {member.name}
-              </h3>
-              <p className="mt-1 text-sm text-slate-600">{member.role}</p>
-            </article>
-          ))}
-        </div>
+        <TeamCarousel members={teamMembers} />
       </section>
 
       <section className="bg-primary py-14">

@@ -11,7 +11,7 @@ module.exports = {
         primary: "#1a1a2e",
         accent: "#4a90d9",
         light: "#f5f5f5",
-        redButtonBg: "#F10507",
+        fisherRed: "#F10507",
         blackButtonBg: "#000000",
         hoverButtonBg: "#FFFFFF",
 
