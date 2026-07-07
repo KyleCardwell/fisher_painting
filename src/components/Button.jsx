@@ -12,6 +12,7 @@ export default function Button({
   text-white
     bg-fisherRed
     border-fisherRed
+    hover:bg-hoverButtonBg
     hover:text-fisherRed
     hover:border-fisherRed
   `,
@@ -19,6 +20,7 @@ export default function Button({
     text-white
     bg-blackButtonBg
     border-blackButtonBg
+    hover:bg-hoverButtonBg
     hover:text-blackButtonBg
     hover:border-blackButtonBg
   `,
@@ -45,8 +47,7 @@ export default function Button({
     py-3
     rounded-3xl
     transition-colors
-    duration-200
-    hover:bg-hoverButtonBg
+    duration-500
     ${className}
   `;
 

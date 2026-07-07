@@ -124,7 +124,7 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div className="overflow-hidden rounded-2xl bg-white p-3 shadow-sm ring-1 ring-slate-100">
+        <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
           <PlaceholderImage
             src={images.home.team}
             alt="Fisher Painting team"
@@ -179,25 +179,25 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {recentProjects.map((projectImage, index) => (
-              <Link
-                key={`recent-project-${index + 1}`}
-                href="/portfolio"
-                className="group relative block overflow-hidden rounded-[10px]"
-              >
+              // <Link
+              //   key={`recent-project-${index + 1}`}
+              //   href="/portfolio"
+              //   className="group relative block overflow-hidden rounded-[10px]"
+              // >
                 <PlaceholderImage
                   src={projectImage}
                   alt={`Project ${index + 1}`}
                   width={900}
                   height={700}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="h-[360px] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] lg:h-[440px]"
+                  className="h-[360px] w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] lg:h-[440px] overflow-hidden rounded-[10px]"
                 />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-200 group-hover:bg-black/45">
-                  <span className="translate-y-1 text-base font-semibold text-white opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
-                    View Project
-                  </span>
-                </div>
-              </Link>
+                // <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-200 group-hover:bg-black/45">
+                //   <span className="translate-y-1 text-base font-semibold text-white opacity-0 transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100">
+                //     View Project
+                //   </span>
+                // </div>
+              // </Link>
             ))}
           </div>
           <div className="mt-10 text-center">
@@ -225,7 +225,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-normal leading-[1.2] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] sm:text-4xl lg:text-[2.5rem]">
             Your Career, Just a Click Away
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base font-normal leading-[1.5] text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-xl">
+          <p className="mx-auto mt-4 max-w-2xl text-base font-normal leading-[1.5] text-white/95 drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] sm:text-xl lg:text-2xl">
             &quot;Seamlessly apply for your dream job with just a click,
             bringing opportunities closer to you.&quot;
           </p>
@@ -252,7 +252,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-accent py-10">
+      {/* <section className="bg-accent py-10">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-5 px-4 text-center sm:px-6 lg:flex-row lg:px-8 lg:text-left">
           <div>
             <h2 className="text-2xl font-bold text-white sm:text-3xl">
@@ -272,7 +272,7 @@ export default function HomePage() {
             Request A Quote
           </Link>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }
