@@ -110,7 +110,8 @@ export default function Header() {
             alt="Fisher Painting Inc Logo"
             width={210}
             height={60}
-            className="h-auto w-[190px] max-w-full sm:w-[210px] lg:w-[210px]"
+            className="h-auto w-[190px] max-w-full sm:w-[210px] lg:w-[270px]"
+            style={{ height: "auto" }}
             priority
           />
         </Link>

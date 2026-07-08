@@ -81,7 +81,7 @@ export default function HomePage() {
               Now Serving All of Utah
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-xl font-semibold leading-[1.2] text-white/90 sm:text-3xl lg:text-[2.5rem]">
-              And Surrounding Areas
+              And Surrounding Regions
             </p>
             <Button href="/contact" className="mt-8" variant="red">
               Request Quote
@@ -185,6 +185,7 @@ export default function HomePage() {
               //   className="group relative block overflow-hidden rounded-[10px]"
               // >
                 <PlaceholderImage
+                  key={`recent-project-${index + 1}`}
                   src={projectImage}
                   alt={`Project ${index + 1}`}
                   width={900}
