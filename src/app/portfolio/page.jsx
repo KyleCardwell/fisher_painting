@@ -1,4 +1,3 @@
-import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { images, portfolioCards } from "@/lib/images";
 
@@ -24,23 +23,29 @@ export default function PortfolioPage() {
       <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {portfolioCards.map((card) => (
-            <Link key={card.title} href={card.href} className="group block">
-              <article className="relative overflow-hidden rounded-2xl">
-                <PlaceholderImage
-                  src={card.image}
-                  alt={card.title}
-                  width={1200}
-                  height={800}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  className="h-72 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/35" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <h2 className="text-2xl font-bold text-white">{card.title}</h2>
-                  <p className="mt-1 text-sm font-medium text-white/90">{card.date}</p>
-                </div>
-              </article>
-            </Link>
+            <div
+              key={`${card.title}-${card.image}`}
+              className="group relative aspect-[4/3] w-full overflow-hidden rounded-[10px]"
+            >
+              <PlaceholderImage
+                key={card.image}
+                src={card.image}
+                alt={card.title}
+                width={1200}
+                height={900}
+                unoptimized
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                className="h-full w-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110"
+              />
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/40 p-[30px] text-center opacity-0 transition-opacity duration-[400ms] ease-in-out group-hover:opacity-100">
+                <h2 className="-translate-y-5 text-2xl font-bold leading-[1.2] text-white opacity-0 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-y-0 group-hover:opacity-100">
+                  {card.title}
+                </h2>
+                <p className="mt-[15px] translate-y-5 text-[1.1rem] font-medium leading-[1.2] text-white opacity-0 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:translate-y-0 group-hover:opacity-100">
+                  {card.date}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </section>

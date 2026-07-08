@@ -12,6 +12,7 @@ export default function PlaceholderImage({
   priority,
   fill,
   style,
+  unoptimized,
 }) {
   const hasSrc = typeof src === "string" && src.trim().length > 0;
 
@@ -27,6 +28,7 @@ export default function PlaceholderImage({
         priority={priority}
         fill={fill}
         style={style}
+        unoptimized={unoptimized}
       />
     );
   }

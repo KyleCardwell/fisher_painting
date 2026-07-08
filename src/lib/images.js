@@ -116,40 +116,16 @@ export const images = {
 
 export const portfolioCards = [
   {
-    title: "Megaplex Daybreak",
-    date: "Summer 2024",
-    href: "/portfolio",
-    image: r2Image(imageFolders.portfolio, "Megaplex-Daybreak-2.jpg"),
-  },
-  {
-    title: "Worthington Residences",
-    date: "2025",
-    href: "/portfolio/worthington",
-    image: r2Image(imageFolders.portfolio, "Worthington.webp"),
-  },
-  {
-    title: "Traeger Grills",
+    title: "Traeger HQ",
     date: "2025",
     href: "/portfolio/traeger",
-    image: r2Image(imageFolders.portfolio, "Traeger-Grills-Interior.jpg"),
+    image: r2Image(imageFolders.portfolio, "Traeger-Grills-Interior-1.jpg"),
   },
   {
-    title: "doTerra Office",
+    title: "Bees Stadium Daybreak",
     date: "2025",
     href: "/portfolio",
-    image: r2Image(imageFolders.portfolio, "doTerra-Office.jpg"),
-  },
-  {
-    title: "Domo Headquarters",
-    date: "2025",
-    href: "/portfolio",
-    image: r2Image(imageFolders.portfolio, "Domo-Headquarters.jpg"),
-  },
-  {
-    title: "Kensington Tower",
-    date: "2025",
-    href: "/portfolio/tower-8",
-    image: r2Image(imageFolders.portfolio, "Kensington-Tower.jpg"),
+    image: r2Image(imageFolders.portfolio, "Bees-Stadium-Daybreak.png"),
   },
   {
     title: "Delta Center",
@@ -158,10 +134,40 @@ export const portfolioCards = [
     image: r2Image(imageFolders.portfolio, "Delta-Center.webp"),
   },
   {
-    title: "Lehi City Hall",
+    title: "Megaplex Daybreak",
+    date: "Summer 2024",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "Megaplex-Daybreak-2.jpg"),
+  },
+  {
+    title: "U of U Baseball",
     date: "2025",
     href: "/portfolio",
-    image: r2Image(imageFolders.portfolio, "Lehi-City-Hall.jpg"),
+    image: r2Image(imageFolders.portfolio, "UofU-Baseball.webp"),
+  },
+  {
+    title: "Summit Vista",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "Summit-Vista-1.jpg"),
+  },
+  {
+    title: "Worthington Apartments",
+    date: "2025",
+    href: "/portfolio/worthington",
+    image: r2Image(imageFolders.portfolio, "Worthington.webp"),
+  },
+  {
+    title: "Murray City Hall",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "Murray-City-Hall-Exterior.jpg"),
+  },
+  {
+    title: "Herriman City Hall",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "Herriman-City-Hall.webp"),
   },
   {
     title: "West Valley City Police HQ",
@@ -173,16 +179,61 @@ export const portfolioCards = [
     ),
   },
   {
+    title: "doTerra Corporate Campus",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "doTerra-Office.jpg"),
+  },
+  {
+    title: "Bill.com Draper Office",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "bill-com.webp"),
+  },
+  {
+    title: "STK Steakhouse",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "STK-Steakhouse.jpg"),
+  },
+  {
+    title: "Kensington Tower",
+    date: "2025",
+    href: "/portfolio/tower-8",
+    image: r2Image(imageFolders.portfolio, "Kensington-Tower.jpg"),
+  },
+  {
     title: "U of U West Village",
     date: "2025",
     href: "/portfolio",
     image: r2Image(imageFolders.portfolio, "U-of-U-West-Village.jpg"),
   },
   {
-    title: "Tooele Technical College",
+    title: "Toole Technical College",
     date: "2025",
     href: "/portfolio",
     image: r2Image(imageFolders.portfolio, "Tooele-Technical-College-2.jpg"),
+  },
+  {
+    title: "U of U Helix Office Building",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(
+      imageFolders.portfolio,
+      "U-of-U-Helix-Office-Building.jpg",
+    ),
+  },
+  {
+    title: "Base Camp Talisker Club",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "Base-Camp-Tuhaye.jpg"),
+  },
+  {
+    title: "Lehi City Hall",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "Lehi-City-Hall.jpg"),
   },
   {
     title: "Loveland Living Planet Aquarium",
@@ -194,10 +245,16 @@ export const portfolioCards = [
     ),
   },
   {
-    title: "Montage Deer Valley",
+    title: "Domo HQ",
     date: "2025",
     href: "/portfolio",
-    image: r2Image(imageFolders.portfolio, "Montage-Deer-Valley.jpg"),
+    image: r2Image(imageFolders.portfolio, "Domo-Headquarters.jpg"),
+  },
+  {
+    title: "U of U Eccles Stadium",
+    date: "2025",
+    href: "/portfolio",
+    image: r2Image(imageFolders.portfolio, "U-of-U-Eccles-Stadium-2.webp"),
   },
   {
     title: "All Star Entertainment",
@@ -206,10 +263,10 @@ export const portfolioCards = [
     image: r2Image(imageFolders.portfolio, "All-Star-Entertainment.jpg"),
   },
   {
-    title: "STK Steakhouse",
+    title: "Montage Deer Valley",
     date: "2025",
     href: "/portfolio",
-    image: r2Image(imageFolders.portfolio, "STK-Steakhouse.jpg"),
+    image: r2Image(imageFolders.portfolio, "Montage-Deer-Valley.jpg"),
   },
 ];
 
