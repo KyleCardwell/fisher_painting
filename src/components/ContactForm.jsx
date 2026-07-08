@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Button from "@/components/Button";
 
 const serviceOptions = [
   "Interior Painting",
@@ -124,10 +125,10 @@ export default function ContactForm() {
         </div>
       ) : null}
 
-      <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+      <form onSubmit={handleSubmit} className="space-y-5 bg-white">
         <div>
-          <label htmlFor="name" className="mb-1 block text-sm font-semibold text-slate-800">
-            Name <span className="text-red-600">*</span>
+          <label htmlFor="name" className="mb-2 block text-sm font-semibold text-[#1C1D1E]">
+            Name <span className="text-red-600">(Required)</span>
           </label>
           <input
             id="name"
@@ -135,15 +136,15 @@ export default function ContactForm() {
             type="text"
             value={formData.name}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/25"
+            className="h-14 w-full border border-[#d9d9d9] px-4 text-base outline-none transition focus:border-fisherRed focus:ring-2 focus:ring-fisherRed/15"
           />
           {errors.name ? <p className="mt-1 text-xs text-red-600">{errors.name}</p> : null}
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div>
-            <label htmlFor="email" className="mb-1 block text-sm font-semibold text-slate-800">
-              Email <span className="text-red-600">*</span>
+            <label htmlFor="email" className="mb-2 block text-sm font-semibold text-[#1C1D1E]">
+              Email <span className="text-red-600">(Required)</span>
             </label>
             <input
               id="email"
@@ -151,14 +152,14 @@ export default function ContactForm() {
               type="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/25"
+              className="h-14 w-full border border-[#d9d9d9] px-4 text-base outline-none transition focus:border-fisherRed focus:ring-2 focus:ring-fisherRed/15"
             />
             {errors.email ? <p className="mt-1 text-xs text-red-600">{errors.email}</p> : null}
           </div>
 
           <div>
-            <label htmlFor="phone" className="mb-1 block text-sm font-semibold text-slate-800">
-              Phone
+            <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-[#1C1D1E]">
+              Phone <span className="text-red-600">(Required)</span>
             </label>
             <input
               id="phone"
@@ -166,13 +167,13 @@ export default function ContactForm() {
               type="tel"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/25"
+              className="h-14 w-full border border-[#d9d9d9] px-4 text-base outline-none transition focus:border-fisherRed focus:ring-2 focus:ring-fisherRed/15"
             />
           </div>
         </div>
 
-        <div>
-          <label htmlFor="serviceNeeded" className="mb-1 block text-sm font-semibold text-slate-800">
+        {/* <div>
+          <label htmlFor="serviceNeeded" className="mb-2 block text-sm font-semibold text-[#1C1D1E]">
             Service Needed
           </label>
           <select
@@ -180,7 +181,7 @@ export default function ContactForm() {
             name="serviceNeeded"
             value={formData.serviceNeeded}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/25"
+            className="h-14 w-full border border-[#d9d9d9] px-4 text-base outline-none transition focus:border-fisherRed focus:ring-2 focus:ring-fisherRed/15"
           >
             <option value="">Select a service</option>
             {serviceOptions.map((option) => (
@@ -189,11 +190,11 @@ export default function ContactForm() {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
 
         <div>
-          <label htmlFor="message" className="mb-1 block text-sm font-semibold text-slate-800">
-            Message <span className="text-red-600">*</span>
+          <label htmlFor="message" className="mb-2 block text-sm font-semibold text-[#1C1D1E]">
+            Message <span className="text-red-600">(Required)</span>
           </label>
           <textarea
             id="message"
@@ -201,18 +202,19 @@ export default function ContactForm() {
             rows={6}
             value={formData.message}
             onChange={handleChange}
-            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/25"
+            className="w-full border border-[#d9d9d9] px-4 py-3 text-base outline-none transition focus:border-fisherRed focus:ring-2 focus:ring-fisherRed/15"
           />
           {errors.message ? <p className="mt-1 text-xs text-red-600">{errors.message}</p> : null}
         </div>
 
-        <button
+        <Button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#3b7fc4] disabled:cursor-not-allowed disabled:opacity-70"
+          variant="red"
+          className="text-base disabled:cursor-not-allowed disabled:opacity-70"
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
-        </button>
+          {isSubmitting ? "Sending..." : "Submit"}
+        </Button>
       </form>
     </div>
   );

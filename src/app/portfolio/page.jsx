@@ -7,7 +7,7 @@ export default function PortfolioPage() {
     <div className="bg-light">
       <section className="relative isolate overflow-hidden py-24 sm:py-28">
         <PlaceholderImage
-          src={images.home.heroWide}
+          src={images.portfolio.banner}
           alt="Fisher Painting Inc portfolio"
           width={1920}
           height={1080}
@@ -17,7 +17,7 @@ export default function PortfolioPage() {
         />
         <div className="absolute inset-0 -z-10 bg-black/55" />
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">Our Portfolio</h1>
+          <h1 className="text-4xl text-white sm:text-5xl">Portfolio</h1>
         </div>
       </section>
 

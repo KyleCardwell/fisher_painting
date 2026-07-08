@@ -136,16 +136,16 @@ export default function Header() {
             Portfolio
           </Link>
           <Link
-            href="/contact"
-            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
-          >
-            Contact
-          </Link>
-          <Link
             href="/careers"
             className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
           >
             Careers
+          </Link>
+          <Link
+            href="/contact"
+            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
+          >
+            Contact
           </Link>
         </nav>
 

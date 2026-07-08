@@ -19,7 +19,9 @@ export default function AboutPage() {
         />
         <div className="absolute inset-0 -z-10 bg-black/55" />
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">About</h1>
+          <h1 className="text-4xl leading-[1.1] text-white sm:text-5xl lg:text-6xl">
+            About
+          </h1>
         </div>
       </section>
 

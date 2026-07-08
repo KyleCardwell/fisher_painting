@@ -1,5 +1,6 @@
 export const IMAGE_BASE =
-  process.env.NEXT_PUBLIC_IMAGE_BASE_URL || "https://pub-114aa5ba9d9e4ce58bfee3087d7dc2f7.r2.dev";
+  process.env.NEXT_PUBLIC_IMAGE_BASE_URL ||
+  "https://pub-114aa5ba9d9e4ce58bfee3087d7dc2f7.r2.dev";
 
 const trimSlashes = (value) => value.replace(/^\/+|\/+$/g, "");
 
@@ -9,27 +10,35 @@ const joinPath = (...segments) =>
     .map((segment) => trimSlashes(String(segment)))
     .join("/");
 
-const withImageBase = (path) => `${trimSlashes(IMAGE_BASE)}/${trimSlashes(path)}`;
+const withImageBase = (path) =>
+  `${trimSlashes(IMAGE_BASE)}/${trimSlashes(path)}`;
 
 export const imageFolders = {
   root: "root",
   employees: "root/employees",
   homeBanner: "root/home/banner",
-  homePortfolio: "root/home/portfolio",
+  projects: "root/home/projects",
   homeServices: "root/home/services",
   logos: "root/logos",
   portfolio: "root/portfolio",
   about: "root/about",
+  contact: "root/contact",
+  careers: "root/careers",
 };
 
-export const r2Image = (folder, filename) => withImageBase(joinPath(folder, filename));
+export const r2Image = (folder, filename) =>
+  withImageBase(joinPath(folder, filename));
 
 const buildImageGroup = (folder, entries) =>
   Object.fromEntries(
-    Object.entries(entries).map(([key, filename]) => [key, filename ? r2Image(folder, filename) : null])
+    Object.entries(entries).map(([key, filename]) => [
+      key,
+      filename ? r2Image(folder, filename) : null,
+    ]),
   );
 
-const listImages = (folder, filenames) => filenames.map((filename) => r2Image(folder, filename));
+const listImages = (folder, filenames) =>
+  filenames.map((filename) => r2Image(folder, filename));
 
 export const images = {
   home: {
@@ -45,10 +54,22 @@ export const images = {
       serviceEpoxy: "epoxy-coatings.webp",
       serviceWallcoverings: "The-Plastics-Clinic-7782.webp",
     }),
-    depositSmall1: r2Image(imageFolders.homeServices, "The-Plastics-Clinic-7782.webp"),
-    depositSmall2: r2Image(imageFolders.homeBanner, "Depositphotos_4680739_ds.webp"),
-    depositSmall3: r2Image(imageFolders.homeBanner, "st-george-red-rocks-1.jpg"),
-    careersBg: r2Image(imageFolders.homeBanner, "Depositphotos_4680739_ds.webp"),
+    depositSmall1: r2Image(
+      imageFolders.homeServices,
+      "The-Plastics-Clinic-7782.webp",
+    ),
+    depositSmall2: r2Image(
+      imageFolders.homeBanner,
+      "Depositphotos_4680739_ds.webp",
+    ),
+    depositSmall3: r2Image(
+      imageFolders.homeBanner,
+      "st-george-red-rocks-1.jpg",
+    ),
+    careersBg: r2Image(
+      imageFolders.homeBanner,
+      "Depositphotos_4680739_ds.webp",
+    ),
     team: r2Image(imageFolders.employees, "Entire-Team-scaled.jpg"),
   },
   employees: buildImageGroup(imageFolders.employees, {
@@ -69,7 +90,7 @@ export const images = {
     logoWhite: "FP_-_White_transparent-scaled.png",
     favicon: "favicon-2.png",
   }),
-  portfolio: buildImageGroup(imageFolders.homePortfolio, {
+  projects: buildImageGroup(imageFolders.projects, {
     project1: "project-1.webp",
     project2: "project-2.webp",
     project3: "project-3.webp",
@@ -78,8 +99,18 @@ export const images = {
     project6: "project-6.webp",
   }),
   about: buildImageGroup(imageFolders.about, {
-    banner: 'Western-32.webp',
-    project: 'i-M-iqYF.webp'
+    banner: "Western-32.webp",
+    project: "i-M-iqYF.webp",
+  }),
+  contact: buildImageGroup(imageFolders.contact, {
+    banner: "h8hgZzgv.webp",
+    project: "The-Worthington-Residences_Salt-Lake-City_UT_Exterior-4.webp",
+  }),
+  careers: buildImageGroup(imageFolders.careers, {
+    banner: "The-Plastics-Clinic-7718.webp",
+  }),
+  portfolio: buildImageGroup(imageFolders.portfolio, {
+    banner: "The-Plastics-Clinic-2.webp",
   }),
 };
 
@@ -136,7 +167,10 @@ export const portfolioCards = [
     title: "West Valley City Police HQ",
     date: "2025",
     href: "/portfolio",
-    image: r2Image(imageFolders.portfolio, "West-Valley-City-Police-HQ-Exterior.jpg"),
+    image: r2Image(
+      imageFolders.portfolio,
+      "West-Valley-City-Police-HQ-Exterior.jpg",
+    ),
   },
   {
     title: "U of U West Village",
@@ -154,7 +188,10 @@ export const portfolioCards = [
     title: "Loveland Living Planet Aquarium",
     date: "2025",
     href: "/portfolio",
-    image: r2Image(imageFolders.portfolio, "Loveland-Living-Planet-Aquarium.jpg"),
+    image: r2Image(
+      imageFolders.portfolio,
+      "Loveland-Living-Planet-Aquarium.jpg",
+    ),
   },
   {
     title: "Montage Deer Valley",
@@ -190,14 +227,23 @@ export const portfolioImages = {
       "Domo-Headquarters.jpg",
       "STK-Steakhouse.jpg",
     ]),
-    Repaints: listImages(imageFolders.portfolio, ["Delta-Center.webp", "Traeger-Grills-Interior.jpg"]),
+    Repaints: listImages(imageFolders.portfolio, [
+      "Delta-Center.webp",
+      "Traeger-Grills-Interior.jpg",
+    ]),
     "New Commercial": listImages(imageFolders.portfolio, [
       "Megaplex-Daybreak-2.jpg",
       "Lehi-City-Hall.jpg",
       "U-of-U-Helix-Office-Building.jpg",
     ]),
-    Residential: listImages(imageFolders.portfolio, ["Base-Camp-Tuhaye.jpg", "Montage-Deer-Valley.jpg"]),
-    "Multi-Family": listImages(imageFolders.portfolio, ["Worthington.webp", "Summit-Vista-1.jpg"]),
+    Residential: listImages(imageFolders.portfolio, [
+      "Base-Camp-Tuhaye.jpg",
+      "Montage-Deer-Valley.jpg",
+    ]),
+    "Multi-Family": listImages(imageFolders.portfolio, [
+      "Worthington.webp",
+      "Summit-Vista-1.jpg",
+    ]),
   },
   exteriorCoatingsPortfolio: {
     "High Performance coatings": listImages(imageFolders.portfolio, [
@@ -205,27 +251,59 @@ export const portfolioImages = {
       "Murray-City-Hall-Exterior.jpg",
       "Herriman-City-Hall.webp",
     ]),
-    "Water Repellents": listImages(imageFolders.portfolio, ["Worthington.webp", "Murray-City-Hall.jpg"]),
-    "Anti-graffiti coatings": listImages(imageFolders.portfolio, ["Delta-Center.webp"]),
-    Repaints: listImages(imageFolders.portfolio, ["Domo-Headquarters.jpg", "Loveland-Living-Planet-Aquarium.jpg"]),
-    "New Tilt-ups": listImages(imageFolders.portfolio, ["doTerra-Office.jpg", "Tooele-Technical-College-2.jpg"]),
-    Siding: listImages(imageFolders.portfolio, ["Base-Camp-Tuhaye.jpg", "Montage-Deer-Valley.jpg"]),
+    "Water Repellents": listImages(imageFolders.portfolio, [
+      "Worthington.webp",
+      "Murray-City-Hall.jpg",
+    ]),
+    "Anti-graffiti coatings": listImages(imageFolders.portfolio, [
+      "Delta-Center.webp",
+    ]),
+    Repaints: listImages(imageFolders.portfolio, [
+      "Domo-Headquarters.jpg",
+      "Loveland-Living-Planet-Aquarium.jpg",
+    ]),
+    "New Tilt-ups": listImages(imageFolders.portfolio, [
+      "doTerra-Office.jpg",
+      "Tooele-Technical-College-2.jpg",
+    ]),
+    Siding: listImages(imageFolders.portfolio, [
+      "Base-Camp-Tuhaye.jpg",
+      "Montage-Deer-Valley.jpg",
+    ]),
     Residential: listImages(imageFolders.portfolio, ["Base-Camp-Tuhaye.jpg"]),
   },
   plasterCoatingsPortfolio: {
-    "Gypsum based": listImages(imageFolders.portfolio, ["STK-Steakhouse.jpg", "Traeger-Grills-Interior-1.jpg"]),
+    "Gypsum based": listImages(imageFolders.portfolio, [
+      "STK-Steakhouse.jpg",
+      "Traeger-Grills-Interior-1.jpg",
+    ]),
     "Lime-based": listImages(imageFolders.portfolio, ["Kensington-Tower.jpg"]),
-    "Micro-cement": listImages(imageFolders.homeServices, ["The-Plastics-Clinic-7782.webp"]),
+    "Micro-cement": listImages(imageFolders.homeServices, [
+      "The-Plastics-Clinic-7782.webp",
+    ]),
   },
   stainCoatingsPortfolio: {
-    Siding: listImages(imageFolders.portfolio, ["Base-Camp-Tuhaye.jpg", "Montage-Deer-Valley.jpg"]),
-    "Case base doors": listImages(imageFolders.portfolio, ["Traeger-Grills-Interior.jpg"]),
-    "CLT structure": listImages(imageFolders.portfolio, ["U-of-U-West-Village.jpg"]),
+    Siding: listImages(imageFolders.portfolio, [
+      "Base-Camp-Tuhaye.jpg",
+      "Montage-Deer-Valley.jpg",
+    ]),
+    "Case base doors": listImages(imageFolders.portfolio, [
+      "Traeger-Grills-Interior.jpg",
+    ]),
+    "CLT structure": listImages(imageFolders.portfolio, [
+      "U-of-U-West-Village.jpg",
+    ]),
   },
   wallcoveringsPortfolio: {
     Wallpapers: listImages(imageFolders.portfolio, ["STK-Steakhouse.jpg"]),
-    "Standard commercial vinyl": listImages(imageFolders.portfolio, ["Traeger-Grills-Interior-1.jpg"]),
-    "Graphics & murals": listImages(imageFolders.portfolio, ["All-Star-Entertainment.jpg"]),
-    "Felt & acoustics": listImages(imageFolders.portfolio, ["Loveland-Living-Planet-Aquarium.jpg"]),
+    "Standard commercial vinyl": listImages(imageFolders.portfolio, [
+      "Traeger-Grills-Interior-1.jpg",
+    ]),
+    "Graphics & murals": listImages(imageFolders.portfolio, [
+      "All-Star-Entertainment.jpg",
+    ]),
+    "Felt & acoustics": listImages(imageFolders.portfolio, [
+      "Loveland-Living-Planet-Aquarium.jpg",
+    ]),
   },
 };

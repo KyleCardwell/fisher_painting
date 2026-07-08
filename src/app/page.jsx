@@ -37,12 +37,12 @@ const serviceCards = [
 ];
 
 const recentProjects = [
-  images.portfolio.project1,
-  images.portfolio.project2,
-  images.portfolio.project3,
-  images.portfolio.project4,
-  images.portfolio.project5,
-  images.portfolio.project6,
+  images.projects.project1,
+  images.projects.project2,
+  images.projects.project3,
+  images.projects.project4,
+  images.projects.project5,
+  images.projects.project6,
 ];
 
 export default function HomePage() {
