@@ -1,5 +1,13 @@
 import { images } from "@/lib/images";
 
+export const fisherLocation = {
+  label: "687 W 6960 S,\nMidvale, UT 84047",
+  directionsUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=687%20W%206960%20S%2C%20Midvale%2C%20UT%2084047",
+  embedUrl:
+    "https://www.google.com/maps?f=q&source=s_q&hl=en&q=687%20W%206960%20S%2C%20Midvale%2C%20UT%2084047&z=17&output=embed",
+};
+
 export const teamMembers = [
   {
     name: "Brent Fisher",

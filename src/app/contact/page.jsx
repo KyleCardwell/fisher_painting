@@ -1,5 +1,6 @@
 import ContactForm from "@/components/ContactForm";
 import PlaceholderImage from "@/components/PlaceholderImage";
+import { fisherLocation } from "@/lib/constants";
 import { images } from "@/lib/images";
 import {
   EnvelopeIcon,
@@ -17,7 +18,7 @@ const contactCards = [
         Midvale, UT 84047
       </>
     ),
-    href: "https://maps.app.goo.gl/hrVTEGF2J41vcLub6",
+    href: fisherLocation.directionsUrl,
     icon: MapPinIcon,
   },
   {
@@ -107,13 +108,12 @@ export default function ContactPage() {
           <div className="overflow-hidden rounded-[10px]">
             <iframe
               title="Fisher Painting Inc location map"
-              src="https://www.google.com/maps?q=Fisher+Painting+Inc.+Midvale,+UT&z=16&output=embed"
+              src={fisherLocation.embedUrl}
               width="100%"
-              height="450"
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              className="block w-full"
+              className="block h-[360px] w-full sm:h-[450px]"
             />
           </div>
         </div>

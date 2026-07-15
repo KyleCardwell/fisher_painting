@@ -5,6 +5,7 @@ import {
   PhoneIcon,
 } from "@heroicons/react/24/outline";
 import PlaceholderImage from "@/components/PlaceholderImage";
+import { fisherLocation } from "@/lib/constants";
 import { images } from "../lib/images";
 
 const quickLinks = [
@@ -18,8 +19,8 @@ const quickLinks = [
 
 const contactLinks = [
   {
-    label: "687 W 6960 S,\nMidvale, UT 84047",
-    href: "https://maps.app.goo.gl/hrVTEGF2J41vcLub6",
+    label: fisherLocation.label,
+    href: fisherLocation.directionsUrl,
     icon: MapPinIcon,
     external: true,
   },
