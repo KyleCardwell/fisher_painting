@@ -1,5 +1,5 @@
-import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
+import Button from "@/components/Button";
 import { images } from "@/lib/images";
 
 const serviceSections = [
@@ -8,9 +8,15 @@ const serviceSections = [
     title: "Interior Painting",
     description:
       "Transform your space with Fisher Painting Services' expert interior painting solutions.",
-    bullets: ["Tenant Improvements", "Repaints", "New Commercial", "Residential", "Multi-Family"],
-    image: images.home.serviceInterior,
-    buttonText: "View Interior Portfolio",
+    bullets: [
+      "Tenant Improvements",
+      "Repaints",
+      "New Commercial",
+      "Residential",
+      "Multi-Family",
+    ],
+    image: images.services.interior,
+    buttonText: "View More",
     buttonHref: "/portfolio/interior-painting",
   },
   {
@@ -27,8 +33,8 @@ const serviceSections = [
       "Siding",
       "Residential",
     ],
-    image: images.home.serviceExterior,
-    buttonText: "View Exterior Portfolio",
+    image: images.services.exterior,
+    buttonText: "View More",
     buttonHref: "/portfolio/exterior-coatings",
   },
   {
@@ -37,8 +43,8 @@ const serviceSections = [
     description:
       "Discover the timeless beauty and versatility of plaster coatings with Fisher Painting Services.",
     bullets: ["Gypsum based", "Lime-based", "Micro-cement"],
-    image: images.home.serviceEpoxy,
-    buttonText: "View Plaster Portfolio",
+    image: images.services.plaster,
+    buttonText: "View More",
     buttonHref: "/portfolio/plaster-coatings",
   },
   {
@@ -46,9 +52,9 @@ const serviceSections = [
     title: "Stain & Transparent Coatings",
     description:
       "Enhance the natural beauty of your wood and other surfaces with our premium stain and transparent coating services.",
-    bullets: ["Siding", "Case base doors", "CLT structure"],
-    image: images.home.heroAbout,
-    buttonText: "View Stain Portfolio",
+    bullets: ["Siding", "Case, base, doors", "CLT structure"],
+    image: images.services.transparent,
+    buttonText: "View More",
     buttonHref: "/portfolio/stain-transparent-coatings",
   },
   {
@@ -56,19 +62,24 @@ const serviceSections = [
     title: "Wallcoverings",
     description:
       "Transform your interiors with the sophisticated and dynamic wallcovering solutions from Fisher Painting Services.",
-    bullets: ["Wallpapers", "Standard commercial vinyl", "Graphics & murals", "Felt & acoustics"],
-    image: images.home.depositSmall1,
-    buttonText: "View Wallcoverings Portfolio",
+    bullets: [
+      "Wallpapers",
+      "Standard commercial vinyl",
+      "Graphics & murals",
+      "Felt & acoustics",
+    ],
+    image: images.services.wallcoverings,
+    buttonText: "View More",
     buttonHref: "/portfolio/wallcoverings",
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <div className="bg-light">
-      <section className="relative isolate overflow-hidden py-24 sm:py-28">
+    <div className="bg-white">
+      <section className="relative isolate flex min-h-[320px] items-center justify-center overflow-hidden px-5 py-[100px] text-left">
         <PlaceholderImage
-          src={images.home.heroWide}
+          src={images.services.banner}
           alt="Fisher Painting Inc services background"
           width={1920}
           height={1080}
@@ -76,20 +87,15 @@ export default function ServicesPage() {
           priority
           className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 -z-10 bg-black/55" />
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">Our Services</h1>
+        <div className="absolute inset-0 -z-10 bg-black/40" />
+        <div className="mx-auto w-full max-w-7xl">
+          <h1 className="text-4xl font-normal leading-[1.2] text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.2)] sm:text-5xl lg:text-[3.75rem]">
+            Services
+          </h1>
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <p className="max-w-4xl text-lg leading-8 text-slate-700">
-          Fisher Painting Inc provides comprehensive painting and coating services tailored to commercial,
-          residential, and specialty projects across Utah.
-        </p>
-      </section>
-
-      <div className="pb-16">
+      <div>
         {serviceSections.map((service, index) => {
           const reverse = index % 2 === 1;
 
@@ -97,36 +103,47 @@ export default function ServicesPage() {
             <section
               key={service.id}
               id={service.id}
-              className="scroll-mt-20 border-t border-slate-200 py-14 first:border-t-0"
+              className={`scroll-mt-28 px-5 py-20 lg:py-[120px] ${
+                reverse ? "bg-[#fbfbfb]" : "bg-white"
+              }`}
             >
-              <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-                <div className={reverse ? "order-2 lg:order-1" : "order-2 lg:order-2"}>
-                  <h2 className="text-3xl font-bold text-primary sm:text-4xl">{service.title}</h2>
-                  <p className="mt-4 text-base leading-7 text-slate-700">{service.description}</p>
-                  <ul className="mt-4 list-inside list-disc space-y-1 text-sm text-slate-700">
+              <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-[60px]">
+                <div
+                  className={`py-0 lg:py-10 ${
+                    reverse ? "order-2 lg:order-1" : "order-2 lg:order-2"
+                  }`}
+                >
+                  <h2 className="max-w-[12ch] text-[2.5rem] font-normal leading-[1.2] text-slate-900 sm:max-w-none lg:text-5xl">
+                    {service.title}
+                  </h2>
+                  <div className="mt-5 text-xl font-normal leading-[1.5] text-slate-900">
+                    <p>{service.description}</p>
+                  </div>
+                  <ul className="mt-5 list-inside list-disc space-y-1 text-xl font-normal leading-[1.5] text-slate-900">
                     {service.bullets.map((bullet) => (
                       <li key={`${service.id}-${bullet}`}>{bullet}</li>
                     ))}
                   </ul>
                   {service.buttonText ? (
-                    <Link
+                    <Button
                       href={service.buttonHref}
-                      className="mt-7 inline-flex rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#111124]"
+                      className="mt-7"
+                      variant="red"
                     >
                       {service.buttonText}
-                    </Link>
+                    </Button>
                   ) : null}
                 </div>
 
                 <div className={reverse ? "order-1 lg:order-2" : "order-1 lg:order-1"}>
-                  <div className="overflow-hidden rounded-2xl shadow-lg">
+                  <div className="relative min-h-[250px] overflow-hidden rounded-[10px] sm:min-h-[400px]">
                     <PlaceholderImage
                       src={service.image}
                       alt={service.title}
                       width={1200}
                       height={900}
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="h-[320px] w-full object-cover sm:h-[380px]"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   </div>
                 </div>

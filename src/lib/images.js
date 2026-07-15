@@ -13,6 +13,7 @@ const joinPath = (...segments) =>
 const withImageBase = (path) =>
   `${trimSlashes(IMAGE_BASE)}/${trimSlashes(path)}`;
 
+//Where these are stored on CloudFlare
 export const imageFolders = {
   root: "root",
   employees: "root/employees",
@@ -24,6 +25,12 @@ export const imageFolders = {
   about: "root/about",
   contact: "root/contact",
   careers: "root/careers",
+  services: "root/services",
+  servicesInterior: "root/services/interiors",
+  servicesExterior: "root/services/exteriors",
+  servicesPlaster: "root/services/plaster-coatings",
+  servicesTransparent: "root/services/stain-transparent-coatings",
+  servicesWallcoverings: "root/services/wallcoverings",
 };
 
 export const r2Image = (folder, filename) =>
@@ -39,6 +46,52 @@ const buildImageGroup = (folder, entries) =>
 
 const listImages = (folder, filenames) =>
   filenames.map((filename) => r2Image(folder, filename));
+
+const listGallery = (folder, filenames) => ({
+  All: listImages(folder, filenames),
+});
+
+export const servicePortfolioImageFilenames = {
+  interiors: [
+    "QIFe4nW1.webp",
+    "High-Pointe-Surgical-Center-7832.webp",
+    "pvtLTcAM.webp",
+    "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Interior-12.webp",
+    "The-Plastics-Clinic-7688.webp",
+    "IMG_6433.webp",
+    "Western-23.webp",
+    "Tm8ngjyp.webp",
+    "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Interior-18.webp",
+    "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Interior-14.webp",
+    "G-KHVRa4.webp",
+    "28CrWOo.webp",
+    "8kNJ1yjj.webp",
+    "The-Plastics-Clinic-.webp",
+    "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Interior-17.webp",
+    "The-Plastics-Clinic-5.webp",
+    "eHUIC8yn.webp",
+    "Traeger-Grills_Salt-Lake-City_UT_02-218005_Interior-1.webp",
+  ],
+  exteriors: [
+    "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Exterior-15.webp",
+  ],
+  plasterCoatings: [
+    "The-Plastics-Clinic-7693.webp",
+    "The-Plastics-Clinic-7675.webp",
+    "The-Plastics-Clinic-3.webp",
+  ],
+  stainTransparentCoatings: [
+    "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Interior-1.webp",
+  ],
+  wallcoverings: [
+    "oxIjh79R.webp",
+    "Uk-y-yS5.webp",
+    "Western-10.webp",
+    "The-Plastics-Clinic-7782.webp",
+    "The-Plastics-Clinic-7798.webp",
+    "The-Plastics-Clinic-7777.webp",
+  ],
+};
 
 export const images = {
   home: {
@@ -111,6 +164,14 @@ export const images = {
   }),
   portfolio: buildImageGroup(imageFolders.portfolio, {
     banner: "The-Plastics-Clinic-2.webp",
+  }),
+  services: buildImageGroup(imageFolders.services, {
+    banner: "banner-img.webp",
+    interior: "QIFe4nW1.webp",
+    exterior: "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Exterior-15.webp",
+    plaster: "The-Plastics-Clinic-3.webp",
+    transparent: "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Interior-1.webp",
+    wallcoverings: "Western-10.webp",
   }),
 };
 
@@ -270,13 +331,7 @@ export const portfolioCards = [
   },
 ];
 
-export const portfolioImages = {
-  worthingtonGallery: listImages(imageFolders.portfolio, ["Worthington.webp"]),
-  tower8Gallery: listImages(imageFolders.portfolio, ["Kensington-Tower.jpg"]),
-  traegerGallery: listImages(imageFolders.portfolio, [
-    "Traeger-Grills-Interior.jpg",
-    "Traeger-Grills-Interior-1.jpg",
-  ]),
+export const categorizedPortfolioImages = {
   interiorPaintingPortfolio: {
     "Tenant Improvements": listImages(imageFolders.portfolio, [
       "bill-com.webp",
@@ -363,4 +418,33 @@ export const portfolioImages = {
       "Loveland-Living-Planet-Aquarium.jpg",
     ]),
   },
+};
+
+export const portfolioImages = {
+  worthingtonGallery: listImages(imageFolders.portfolio, ["Worthington.webp"]),
+  tower8Gallery: listImages(imageFolders.portfolio, ["Kensington-Tower.jpg"]),
+  traegerGallery: listImages(imageFolders.portfolio, [
+    "Traeger-Grills-Interior.jpg",
+    "Traeger-Grills-Interior-1.jpg",
+  ]),
+  interiorPaintingPortfolio: listGallery(
+    imageFolders.servicesInterior,
+    servicePortfolioImageFilenames.interiors,
+  ),
+  exteriorCoatingsPortfolio: listGallery(
+    imageFolders.servicesExterior,
+    servicePortfolioImageFilenames.exteriors,
+  ),
+  plasterCoatingsPortfolio: listGallery(
+    imageFolders.servicesPlaster,
+    servicePortfolioImageFilenames.plasterCoatings,
+  ),
+  stainCoatingsPortfolio: listGallery(
+    imageFolders.servicesTransparent,
+    servicePortfolioImageFilenames.stainTransparentCoatings,
+  ),
+  wallcoveringsPortfolio: listGallery(
+    imageFolders.servicesWallcoverings,
+    servicePortfolioImageFilenames.wallcoverings,
+  ),
 };

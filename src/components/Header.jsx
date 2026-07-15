@@ -35,17 +35,27 @@ const portfolioLinks = [
   { label: "Wallcoverings", href: "/portfolio/wallcoverings" },
 ];
 
-function Dropdown({ label, items }) {
+function Dropdown({ label, items, href }) {
   return (
     <div className="group relative">
-      <button
-        type="button"
-        className="inline-flex items-center gap-1 text-base font-medium leading-[1.2] text-[#676767] transition-colors hover:text-fisherRed"
-      >
-        {label}
-        <ChevronDownIcon className="h-4 w-4" />
-      </button>
-      <div className="invisible absolute left-0 top-full z-50 mt-4 w-72 bg-white p-2 opacity-0 shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-150 group-hover:visible group-hover:opacity-100">
+      {href ? (
+        <Link
+          href={href}
+          className="inline-flex items-center gap-1 text-base font-medium leading-[1.2] text-[#676767] transition-colors hover:text-fisherRed"
+        >
+          {label}
+          <ChevronDownIcon className="h-4 w-4" />
+        </Link>
+      ) : (
+        <button
+          type="button"
+          className="inline-flex items-center gap-1 text-base font-medium leading-[1.2] text-[#676767] transition-colors hover:text-fisherRed"
+        >
+          {label}
+          <ChevronDownIcon className="h-4 w-4" />
+        </button>
+      )}
+      <div className="invisible absolute left-0 top-full z-50 mt-4 w-72 bg-white p-2 opacity-0 shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
         {items.map((item) => (
           <Link
             key={item.href}
@@ -129,7 +139,7 @@ export default function Header() {
           >
             About
           </Link>
-          <Dropdown label="Services" items={servicesLinks} />
+          <Dropdown label="Services" items={servicesLinks} href="/services" />
           <Link
             href="/portfolio"
             className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
