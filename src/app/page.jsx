@@ -4,6 +4,7 @@ import { images } from "@/lib/images";
 import { teamMembers } from "@/lib/constants";
 import Button from "@/components/Button";
 import TeamCarousel from "@/components/TeamCarousel";
+import HomeHeroCarousel from "@/components/HomeHeroCarousel";
 
 const serviceCards = [
   {
@@ -48,47 +49,7 @@ const recentProjects = [
 export default function HomePage() {
   return (
     <div className="bg-white">
-      <section className="relative isolate flex min-h-[40vh] items-center justify-center overflow-hidden sm:min-h-[60vh] md:min-h-[80vh]">
-        <div className="absolute inset-0 -z-20 overflow-hidden">
-          <div className="home-split-img-left absolute inset-y-0 left-0 w-[70%] sm:w-2/3">
-            <PlaceholderImage
-              src={images.home.heroWide}
-              alt="Salt Lake City and Wasatch Mountains"
-              fill
-              sizes="(max-width: 768px) 80vw, 66vw"
-              priority
-              className="object-cover object-center"
-            />
-          </div>
-          <div className="home-split-img-right absolute inset-y-0 right-0 w-[70%] sm:w-2/3">
-            <PlaceholderImage
-              src={images.home.heroSouth}
-              alt="Southern Utah red rocks"
-              fill
-              sizes="(max-width: 768px) 80vw, 66vw"
-              priority
-              className="object-cover object-center"
-            />
-          </div>
-        </div>
-        <div className="absolute inset-0 -z-10 bg-black/30" />
-        <div className="mx-auto w-full max-w-7xl px-4 py-12 text-center sm:px-6 sm:py-20 lg:px-8">
-          <div className="mx-auto max-w-4xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-white/80">
-              Fisher Painting Inc
-            </p>
-            <h1 className="text-4xl font-semibold leading-[1.2] text-white sm:text-5xl lg:text-[3.75rem]">
-              Now Serving All of Utah
-            </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-xl font-semibold leading-[1.2] text-white/90 sm:text-3xl lg:text-[2.5rem]">
-              And Surrounding Regions
-            </p>
-            <Button href="/contact" className="mt-8" variant="red">
-              Request Quote
-            </Button>
-          </div>
-        </div>
-      </section>
+      <HomeHeroCarousel />
 
       <section className="mx-auto w-full max-w-[1360px] px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-2 hidden items-end justify-between gap-4">
