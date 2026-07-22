@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   Bars3Icon,
   ChevronDownIcon,
+  ChevronRightIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
@@ -31,7 +32,7 @@ function NavLink({ href, children, onClose, inset = false, active = false }) {
       className={clsx(
         "block border-b border-[#efefef] py-[15px] text-base font-medium leading-[1.2] hover:bg-fisherRed hover:text-white",
         active ? "bg-fisherRed text-white" : "text-[#676767]",
-        inset ? "px-10" : "px-5",
+        inset ? "pl-14 pr-5" : "px-5",
       )}
     >
       {children}
@@ -39,8 +40,62 @@ function NavLink({ href, children, onClose, inset = false, active = false }) {
   );
 }
 
+function ServiceGroup({ group, onClose, expanded, onToggle }) {
+  return (
+    <div className="border-b border-[#efefef] last:border-b-0">
+      <button
+        type="button"
+        onClick={onToggle}
+        className={clsx(
+          "flex w-full items-center justify-between py-[15px] pl-10 pr-5 text-left text-base font-medium leading-[1.2] transition-colors",
+          expanded ? "bg-fisherRed text-white" : "text-[#676767]",
+        )}
+        aria-expanded={expanded}
+      >
+        {group.label}
+        <ChevronRightIcon
+          className={clsx(
+            "h-4 w-4 transition-transform",
+            expanded && "rotate-90",
+          )}
+        />
+      </button>
+      <div
+        className={clsx(
+          "grid bg-[#fafafa] transition-[grid-template-rows] duration-200",
+          expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+        )}
+      >
+        <div className="min-h-0 overflow-hidden">
+          {group.items.map((link) =>
+            link.href ? (
+              <NavLink
+                key={link.label}
+                href={link.href}
+                onClose={onClose}
+                inset
+              >
+                {link.label}
+              </NavLink>
+            ) : (
+              <span
+                key={link.label}
+                className="block border-b border-[#efefef] py-[15px] pl-14 pr-5 text-base font-medium leading-[1.2] text-[#929292] last:border-b-0"
+                aria-disabled="true"
+              >
+                {link.label}
+              </span>
+            ),
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function NavSection({ title, links, onClose, active = false }) {
   const [expanded, setExpanded] = useState(false);
+  const [expandedGroup, setExpandedGroup] = useState(null);
 
   return (
     <div className="border-b border-[#efefef]">
@@ -64,10 +119,18 @@ function NavSection({ title, links, onClose, active = false }) {
       </button>
       {expanded && (
         <div className="bg-white">
-          {links.map((link) => (
-            <NavLink key={link.href} href={link.href} onClose={onClose} inset>
-              {link.label}
-            </NavLink>
+          {links.map((group) => (
+            <ServiceGroup
+              key={group.label}
+              group={group}
+              onClose={onClose}
+              expanded={expandedGroup === group.label}
+              onToggle={() =>
+                setExpandedGroup((current) =>
+                  current === group.label ? null : group.label,
+                )
+              }
+            />
           ))}
         </div>
       )}

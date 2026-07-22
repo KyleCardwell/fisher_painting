@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import PlaceholderImage from "@/components/PlaceholderImage";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/outline";
 import { PhoneIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import MobileNav from "./MobileNav";
@@ -11,14 +14,32 @@ import { images } from "../lib/images";
 import Button from "./Button";
 
 const servicesLinks = [
-  { label: "Interior Painting", href: "/services/#interior-painting" },
-  { label: "Exterior Coatings", href: "/services/#exterior-coatings" },
-  { label: "Plaster Coatings", href: "/services/#plaster-coatings" },
   {
-    label: "Stain & Transparent Coatings",
-    href: "/services/#stain-transparent-coatings",
+    label: "Painting",
+    items: [
+      { label: "Interior", href: "/services/#interior-painting" },
+      { label: "Exterior", href: "/services/#exterior-coatings" },
+      {
+        label: "Stain & Transparent Coatings",
+        href: "/services/#stain-transparent-coatings",
+      },
+    ],
   },
-  { label: "Wallcoverings", href: "/services/#wallcoverings" },
+  {
+    label: "Concrete",
+    items: [
+      { label: "Stained Concrete" },
+      { label: "Polished Concrete" },
+      { label: "Epoxy Coatings" },
+    ],
+  },
+  {
+    label: "Specialty",
+    items: [
+      { label: "Plaster Coatings", href: "/services/#plaster-coatings" },
+      { label: "Wall Coverings", href: "/services/#wallcoverings" },
+    ],
+  },
 ];
 
 const portfolioLinks = [
@@ -57,13 +78,37 @@ function Dropdown({ label, items, href }) {
       )}
       <div className="invisible absolute left-0 top-full z-50 mt-4 w-72 bg-white p-2 opacity-0 shadow-[0_4px_14px_rgba(0,0,0,0.05)] transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
         {items.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="block px-4 py-[15px] text-base font-medium leading-[1.2] text-[#676767] hover:bg-fisherRed hover:text-white"
-          >
-            {item.label}
-          </Link>
+          <div key={item.label} className="group/category relative">
+            <button
+              type="button"
+              className="relative z-10 flex w-full items-center justify-between bg-white px-4 py-[15px] text-left text-base font-medium leading-[1.2] text-[#676767] transition-colors hover:bg-fisherRed hover:text-white group-hover/category:bg-fisherRed group-hover/category:text-white group-focus-within/category:bg-fisherRed group-focus-within/category:text-white"
+              aria-haspopup="menu"
+            >
+              {item.label}
+              <ChevronRightIcon className="h-4 w-4 shrink-0" />
+            </button>
+            <div className="invisible absolute left-full top-0 w-72 overflow-hidden p-2 opacity-0 transition-opacity duration-200 group-hover/category:visible group-hover/category:opacity-100 group-focus-within/category:visible group-focus-within/category:opacity-100">
+              {item.items.map((service) =>
+                service.href ? (
+                  <Link
+                    key={service.label}
+                    href={service.href}
+                    className="block -translate-x-full bg-white px-4 py-[15px] text-base font-medium leading-[1.2] text-[#676767] shadow-[0_4px_14px_rgba(0,0,0,0.08)] transition-transform duration-300 ease-out hover:bg-fisherRed hover:text-white group-hover/category:translate-x-0 group-focus-within/category:translate-x-0"
+                  >
+                    {service.label}
+                  </Link>
+                ) : (
+                  <span
+                    key={service.label}
+                    className="block -translate-x-full cursor-default bg-white px-4 py-[15px] text-base font-medium leading-[1.2] text-[#929292] shadow-[0_4px_14px_rgba(0,0,0,0.08)] transition-transform duration-300 ease-out group-hover/category:translate-x-0 group-focus-within/category:translate-x-0"
+                    aria-disabled="true"
+                  >
+                    {service.label}
+                  </span>
+                ),
+              )}
+            </div>
+          </div>
         ))}
       </div>
     </div>
