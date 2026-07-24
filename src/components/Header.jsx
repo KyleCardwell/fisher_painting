@@ -46,14 +46,6 @@ const portfolioLinks = [
   { label: "Worthington", href: "/portfolio/worthington" },
   { label: "Tower 8", href: "/portfolio/tower-8" },
   { label: "Traeger", href: "/portfolio/traeger" },
-  { label: "Interior Painting", href: "/portfolio/interior-painting" },
-  { label: "Exterior Coatings", href: "/portfolio/exterior-coatings" },
-  { label: "Plaster Coatings", href: "/portfolio/plaster-coatings" },
-  {
-    label: "Stain & Transparent Coatings",
-    href: "/portfolio/stain-transparent-coatings",
-  },
-  { label: "Wallcoverings", href: "/portfolio/wallcoverings" },
 ];
 
 function Dropdown({ label, items, href }) {

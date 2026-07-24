@@ -1,5 +1,6 @@
 import PlaceholderImage from "@/components/PlaceholderImage";
 import Button from "@/components/Button";
+import ServiceImageCarousel from "@/components/ServiceImageCarousel";
 import { images } from "@/lib/images";
 
 const serviceSections = [
@@ -15,9 +16,7 @@ const serviceSections = [
       "Residential",
       "Multi-Family",
     ],
-    image: images.services.interior,
-    buttonText: "View More",
-    buttonHref: "/portfolio/interior-painting",
+    slides: [images.services.interior, null, null],
   },
   {
     id: "exterior-coatings",
@@ -33,9 +32,7 @@ const serviceSections = [
       "Siding",
       "Residential",
     ],
-    image: images.services.exterior,
-    buttonText: "View More",
-    buttonHref: "/portfolio/exterior-coatings",
+    slides: [images.services.exterior, null, null],
   },
   {
     id: "plaster-coatings",
@@ -43,9 +40,7 @@ const serviceSections = [
     description:
       "Discover the timeless beauty and versatility of plaster coatings with Fisher Painting Services.",
     bullets: ["Gypsum based", "Lime-based", "Micro-cement"],
-    image: images.services.plaster,
-    buttonText: "View More",
-    buttonHref: "/portfolio/plaster-coatings",
+    slides: [images.services.plaster, null, null],
   },
   {
     id: "stain-transparent-coatings",
@@ -53,9 +48,7 @@ const serviceSections = [
     description:
       "Enhance the natural beauty of your wood and other surfaces with our premium stain and transparent coating services.",
     bullets: ["Siding", "Case, base, doors", "CLT structure"],
-    image: images.services.transparent,
-    buttonText: "View More",
-    buttonHref: "/portfolio/stain-transparent-coatings",
+    slides: [images.services.transparent, null, null],
   },
   {
     id: "wallcoverings",
@@ -68,9 +61,7 @@ const serviceSections = [
       "Graphics & murals",
       "Felt & acoustics",
     ],
-    image: images.services.wallcoverings,
-    buttonText: "View More",
-    buttonHref: "/portfolio/wallcoverings",
+    slides: [images.services.wallcoverings, null, null],
   },
 ];
 
@@ -124,28 +115,16 @@ export default function ServicesPage() {
                       <li key={`${service.id}-${bullet}`}>{bullet}</li>
                     ))}
                   </ul>
-                  {service.buttonText ? (
-                    <Button
-                      href={service.buttonHref}
-                      className="mt-7"
-                      variant="red"
-                    >
-                      {service.buttonText}
-                    </Button>
-                  ) : null}
+                  <Button href="/contact" className="mt-7" variant="red">
+                    Request Quote
+                  </Button>
                 </div>
 
                 <div className={reverse ? "order-1 lg:order-2" : "order-1 lg:order-1"}>
-                  <div className="relative min-h-[250px] overflow-hidden rounded-[10px] sm:min-h-[400px]">
-                    <PlaceholderImage
-                      src={service.image}
-                      alt={service.title}
-                      width={1200}
-                      height={900}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                  </div>
+                  <ServiceImageCarousel
+                    serviceName={service.title}
+                    slides={service.slides}
+                  />
                 </div>
               </div>
             </section>
