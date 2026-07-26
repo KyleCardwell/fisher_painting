@@ -120,7 +120,7 @@ export default function Header() {
   return (
     <header
       className={clsx(
-        "fixed inset-x-0 top-0 z-50 bg-white transition-shadow duration-200",
+        "sticky inset-x-0 top-0 z-50 bg-white transition-shadow duration-200",
         scrolled ? "shadow-md" : "shadow-none",
       )}
     >
@@ -128,7 +128,7 @@ export default function Header() {
         <div className="z-10 lg:hidden">
           <Button
             href="tel:+18016769222"
-            className="h-11 w-11 min-w-11 items-center justify-center p-0 text-white hover:text-white sm:hidden [&_svg]:block"
+            className="h-11 w-11 min-w-11 items-center justify-center p-0 text-white hover:text-white [&_svg]:block"
             variant="red"
             aria-label="Call Fisher Painting"
           >
@@ -136,14 +136,6 @@ export default function Header() {
               className="h-5 w-5 shrink-0 fill-current text-white"
               aria-hidden="true"
             />
-          </Button>
-          <Button
-            href="tel:+18016769222"
-            className="hidden h-11 shrink-0 items-center gap-2 whitespace-nowrap px-4 py-0 text-sm leading-none text-white hover:text-white sm:inline-flex lg:hidden"
-            variant="red"
-          >
-            <PhoneIcon className="h-4 w-4 text-white" />
-            (801) 676-9222
           </Button>
         </div>
 
@@ -153,12 +145,11 @@ export default function Header() {
           className="absolute left-1/2 -translate-x-1/2 lg:static lg:shrink-0 lg:translate-x-0"
         >
           <PlaceholderImage
-            src={images.logos.logo}
+            src={images.logos.logoBlack}
             alt="Fisher Painting Inc Logo"
-            width={210}
-            height={60}
-            className="h-auto w-[190px] max-w-full sm:w-[210px] lg:w-[270px]"
-            style={{ height: "auto" }}
+            width={300}
+            height={200}
+            className="h-12 w-auto max-w-full object-contain sm:h-14 lg:h-16"
             priority
           />
         </Link>
