@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
@@ -47,13 +48,46 @@ const portfolioLinks = [
   { label: "Traeger", href: "/portfolio/traeger" },
 ];
 
-function Dropdown({ label, items, href }) {
+const desktopNavLinkClasses =
+  "border-b-2 pb-1 text-base font-medium leading-[1.2] text-[#676767] transition-colors hover:text-fisherRed";
+
+function isNavItemActive(pathname, href) {
+  return href === "/"
+    ? pathname === "/"
+    : pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function DesktopNavLink({ href, children, pathname }) {
+  const active = isNavItemActive(pathname, href);
+
+  return (
+    <Link
+      href={href}
+      aria-current={active ? "page" : undefined}
+      className={clsx(
+        desktopNavLinkClasses,
+        active ? "border-fisherLogoBlue" : "border-transparent",
+      )}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function Dropdown({ label, items, href, pathname }) {
+  const active = href && isNavItemActive(pathname, href);
+
   return (
     <div className="group relative">
       {href ? (
         <Link
           href={href}
-          className="inline-flex items-center gap-1 text-base font-medium leading-[1.2] text-[#676767] transition-colors hover:text-fisherRed"
+          aria-current={active ? "page" : undefined}
+          className={clsx(
+            "inline-flex items-center gap-1",
+            desktopNavLinkClasses,
+            active ? "border-fisherLogoBlue" : "border-transparent",
+          )}
         >
           {label}
           <ChevronDownIcon className="h-4 w-4" />
@@ -107,6 +141,7 @@ function Dropdown({ label, items, href }) {
 }
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [logoCompact, setLogoCompact] = useState(false);
 
@@ -158,37 +193,27 @@ export default function Header() {
         </Link>
 
         <nav className="hidden items-center gap-[35px] lg:flex">
-          <Link
-            href="/"
-            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
-          >
+          <DesktopNavLink href="/" pathname={pathname}>
             Home
-          </Link>
-          <Link
-            href="/about"
-            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
-          >
+          </DesktopNavLink>
+          <DesktopNavLink href="/about" pathname={pathname}>
             About
-          </Link>
-          <Dropdown label="Services" items={servicesLinks} href="/services" />
-          <Link
-            href="/portfolio"
-            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
-          >
+          </DesktopNavLink>
+          <Dropdown
+            label="Services"
+            items={servicesLinks}
+            href="/services"
+            pathname={pathname}
+          />
+          <DesktopNavLink href="/portfolio" pathname={pathname}>
             Portfolio
-          </Link>
-          <Link
-            href="/careers"
-            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
-          >
+          </DesktopNavLink>
+          <DesktopNavLink href="/careers" pathname={pathname}>
             Careers
-          </Link>
-          <Link
-            href="/contact"
-            className="text-base font-medium leading-[1.2] text-[#676767] hover:text-fisherRed"
-          >
+          </DesktopNavLink>
+          <DesktopNavLink href="/contact" pathname={pathname}>
             Contact
-          </Link>
+          </DesktopNavLink>
         </nav>
 
         <div className="hidden items-center gap-4 lg:flex">
