@@ -3,27 +3,12 @@ import PlaceholderImage from "@/components/PlaceholderImage";
 import { images } from "@/lib/images";
 import { teamMembers } from "@/lib/constants";
 import TeamCarousel from "@/components/TeamCarousel";
+import PageBanner from "@/components/PageBanner";
 
 export default function AboutPage() {
   return (
     <div className="bg-light">
-      <section className="relative isolate overflow-hidden py-24 sm:py-28">
-        <PlaceholderImage
-          src={images.about.banner}
-          alt="Western-32.webp"
-          width={1920}
-          height={1080}
-          sizes="100vw"
-          priority
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 -z-10 bg-black/55" />
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl leading-[1.1] text-white sm:text-5xl lg:text-6xl">
-            About
-          </h1>
-        </div>
-      </section>
+      <PageBanner title="About" />
 
       <section className="mx-auto grid w-full max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1fr] lg:gap-14 lg:px-8">
         <div className="overflow-hidden rounded-2xl shadow-[0_4px_14px_rgba(0,0,0,0.08)]">
