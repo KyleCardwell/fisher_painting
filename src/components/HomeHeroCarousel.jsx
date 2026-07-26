@@ -68,7 +68,7 @@ export default function HomeHeroCarousel() {
           <div className="absolute inset-0 -z-10 bg-black/30" />
           <div className="mx-auto w-full max-w-7xl px-4 py-12 text-center sm:px-6 sm:py-20 lg:px-8">
             <div className="mx-auto max-w-4xl">
-              <p className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-white/80">
+              <p className="mb-4 text-xl font-semibold uppercase tracking-[0.16em] text-white/80">
                 Fisher Painting Inc
               </p>
               <h1 className="text-4xl font-semibold leading-[1.2] text-white sm:text-5xl lg:text-[3.75rem]">

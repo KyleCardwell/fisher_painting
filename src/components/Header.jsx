@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import PlaceholderImage from "@/components/PlaceholderImage";
 import {
   ChevronDownIcon,
   ChevronRightIcon,
@@ -10,8 +9,8 @@ import {
 import { PhoneIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
 import MobileNav from "./MobileNav";
-import { images } from "../lib/images";
 import Button from "./Button";
+import AnimatedHeaderLogo from "./AnimatedHeaderLogo";
 
 const servicesLinks = [
   {
@@ -109,9 +108,13 @@ function Dropdown({ label, items, href }) {
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [logoCompact, setLogoCompact] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      setLogoCompact(window.scrollY > 64);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -124,7 +127,14 @@ export default function Header() {
         scrolled ? "shadow-md" : "shadow-none",
       )}
     >
-      <div className="relative mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:min-h-[120px] lg:gap-8 lg:px-8 lg:py-[30px]">
+      <div
+        className={clsx(
+          "relative mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 transition-[min-height,padding] duration-500 sm:px-6 lg:gap-8 lg:px-8",
+          logoCompact
+            ? "lg:min-h-[100px] lg:py-5"
+            : "lg:min-h-[150px] lg:py-[30px]",
+        )}
+      >
         <div className="z-10 lg:hidden">
           <Button
             href="tel:+18016769222"
@@ -144,14 +154,7 @@ export default function Header() {
           aria-label="Fisher Painting Inc Home"
           className="absolute left-1/2 -translate-x-1/2 lg:static lg:shrink-0 lg:translate-x-0"
         >
-          <PlaceholderImage
-            src={images.logos.logoBlack}
-            alt="Fisher Painting Inc Logo"
-            width={300}
-            height={200}
-            className="h-12 w-auto max-w-full object-contain sm:h-14 lg:h-16"
-            priority
-          />
+          <AnimatedHeaderLogo compact={logoCompact} />
         </Link>
 
         <nav className="hidden items-center gap-[35px] lg:flex">
