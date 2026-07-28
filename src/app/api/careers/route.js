@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 const maxResumeSize = 20 * 1024 * 1024;
 
@@ -10,7 +11,7 @@ export async function POST(request) {
     const email = String(formData.get("email") || "").trim();
     const phone = String(formData.get("phone") || "").trim();
     const website = String(formData.get("website") || "").trim();
-    const captcha = String(formData.get("captcha") || "") === "true";
+    const turnstileToken = String(formData.get("turnstileToken") || "");
     const resume = formData.get("resume");
 
     if (website) {
@@ -30,13 +31,19 @@ export async function POST(request) {
       );
     }
 
-    if (!captcha) {
+    const isHuman = await verifyTurnstileToken({
+      action: "careers",
+      request,
+      token: turnstileToken,
+    });
+
+    if (!isHuman) {
       return NextResponse.json(
         {
           success: false,
-          message: "Please complete the CAPTCHA.",
+          message: "CAPTCHA verification failed. Please try again.",
         },
-        { status: 400 }
+        { status: 403 }
       );
     }
 
