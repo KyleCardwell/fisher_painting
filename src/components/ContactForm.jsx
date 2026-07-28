@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "@/components/Button";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 const serviceOptions = [
   "Interior Painting",
@@ -45,6 +46,8 @@ export default function ContactForm() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef(null);
 
   useEffect(() => {
     if (!toast) {
@@ -73,6 +76,11 @@ export default function ContactForm() {
     event.preventDefault();
 
     const validationErrors = validateForm(formData);
+
+    if (!turnstileToken) {
+      validationErrors.turnstile = "Please complete the CAPTCHA.";
+    }
+
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length) {
@@ -87,7 +95,10 @@ export default function ContactForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken,
+        }),
       });
 
       const payload = await response.json();
@@ -106,6 +117,8 @@ export default function ContactForm() {
       });
     } finally {
       setIsSubmitting(false);
+      setTurnstileToken("");
+      turnstileRef.current?.reset();
     }
   };
 
@@ -207,9 +220,32 @@ export default function ContactForm() {
           {errors.message ? <p className="mt-1 text-xs text-red-600">{errors.message}</p> : null}
         </div>
 
+        <div>
+          <p className="mb-2 block text-sm font-semibold text-[#1C1D1E]">CAPTCHA</p>
+          <TurnstileWidget
+            ref={turnstileRef}
+            action="contact"
+            onVerify={(token) => {
+              setTurnstileToken(token);
+              setErrors((prev) => ({ ...prev, turnstile: "" }));
+            }}
+            onExpire={() => setTurnstileToken("")}
+            onError={() => {
+              setTurnstileToken("");
+              setErrors((prev) => ({
+                ...prev,
+                turnstile: "CAPTCHA could not load. Please try again.",
+              }));
+            }}
+          />
+          {errors.turnstile ? (
+            <p className="mt-1 text-xs text-red-600">{errors.turnstile}</p>
+          ) : null}
+        </div>
+
         <Button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !turnstileToken}
           variant="red"
           className="text-base disabled:cursor-not-allowed disabled:opacity-70"
         >

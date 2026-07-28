@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 export async function POST(request) {
   try {
@@ -7,6 +8,7 @@ export async function POST(request) {
     const name = String(body?.name || "").trim();
     const email = String(body?.email || "").trim();
     const message = String(body?.message || "").trim();
+    const turnstileToken = String(body?.turnstileToken || "");
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -15,6 +17,22 @@ export async function POST(request) {
           message: "Name, email, and message are required.",
         },
         { status: 400 }
+      );
+    }
+
+    const isHuman = await verifyTurnstileToken({
+      action: "contact",
+      request,
+      token: turnstileToken,
+    });
+
+    if (!isHuman) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "CAPTCHA verification failed. Please try again.",
+        },
+        { status: 403 }
       );
     }
 

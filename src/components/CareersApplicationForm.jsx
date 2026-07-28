@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "@/components/Button";
+import TurnstileWidget from "@/components/TurnstileWidget";
 
 const maxResumeSize = 20 * 1024 * 1024;
 
@@ -11,7 +12,6 @@ const initialFormData = {
   phone: "",
   message: "",
   website: "",
-  captcha: false,
   resume: null,
 };
 
@@ -36,10 +36,6 @@ function validateForm(values) {
     errors.resume = "Resume must be 20 MB or smaller.";
   }
 
-  if (!values.captcha) {
-    errors.captcha = "Please complete the CAPTCHA.";
-  }
-
   return errors;
 }
 
@@ -48,6 +44,8 @@ export default function CareersApplicationForm() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileRef = useRef(null);
 
   useEffect(() => {
     if (!toast) {
@@ -77,6 +75,11 @@ export default function CareersApplicationForm() {
     event.preventDefault();
 
     const validationErrors = validateForm(formData);
+
+    if (!turnstileToken) {
+      validationErrors.turnstile = "Please complete the CAPTCHA.";
+    }
+
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length) {
@@ -93,7 +96,7 @@ export default function CareersApplicationForm() {
       payload.append("phone", formData.phone);
       payload.append("message", formData.message);
       payload.append("website", formData.website);
-      payload.append("captcha", formData.captcha ? "true" : "false");
+      payload.append("turnstileToken", turnstileToken);
 
       if (formData.resume) {
         payload.append("resume", formData.resume);
@@ -121,6 +124,8 @@ export default function CareersApplicationForm() {
       });
     } finally {
       setIsSubmitting(false);
+      setTurnstileToken("");
+      turnstileRef.current?.reset();
     }
   };
 
@@ -230,22 +235,30 @@ export default function CareersApplicationForm() {
 
         <div>
           <p className="mb-2 block text-sm font-semibold text-[#1C1D1E]">CAPTCHA</p>
-          <label className="flex min-h-14 items-center gap-3 border border-[#d9d9d9] px-4 text-base text-[#1C1D1E]">
-            <input
-              name="captcha"
-              type="checkbox"
-              checked={formData.captcha}
-              onChange={handleChange}
-              className="h-5 w-5 accent-fisherRed"
-            />
-            I am not a robot
-          </label>
-          {errors.captcha ? <p className="mt-1 text-xs text-red-600">{errors.captcha}</p> : null}
+          <TurnstileWidget
+            ref={turnstileRef}
+            action="careers"
+            onVerify={(token) => {
+              setTurnstileToken(token);
+              setErrors((prev) => ({ ...prev, turnstile: "" }));
+            }}
+            onExpire={() => setTurnstileToken("")}
+            onError={() => {
+              setTurnstileToken("");
+              setErrors((prev) => ({
+                ...prev,
+                turnstile: "CAPTCHA could not load. Please try again.",
+              }));
+            }}
+          />
+          {errors.turnstile ? (
+            <p className="mt-1 text-xs text-red-600">{errors.turnstile}</p>
+          ) : null}
         </div>
 
         <Button
           type="submit"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !turnstileToken}
           variant="red"
           className="text-base disabled:cursor-not-allowed disabled:opacity-70"
         >
