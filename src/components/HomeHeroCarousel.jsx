@@ -7,7 +7,7 @@ import PlaceholderImage from "@/components/PlaceholderImage";
 import { images } from "@/lib/images";
 
 const SLIDE_INTERVAL_MS = 7000;
-const slideCount = 2;
+const slideCount = 1;
 
 export default function HomeHeroCarousel() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -23,6 +23,10 @@ export default function HomeHeroCarousel() {
   }, []);
 
   useEffect(() => {
+    if (slideCount <= 1) {
+      return undefined;
+    }
+
     const slideTimer = window.setInterval(goToNextSlide, SLIDE_INTERVAL_MS);
 
     return () => window.clearInterval(slideTimer);
@@ -84,7 +88,7 @@ export default function HomeHeroCarousel() {
           </div>
         </div>
 
-        <div
+        {/* <div
           className={[
             "absolute inset-0 flex items-center justify-center bg-[#f7f4ef] px-4 py-12 transition-opacity duration-700 sm:px-6 sm:py-20 lg:px-8",
             activeSlide === 1
@@ -126,25 +130,29 @@ export default function HomeHeroCarousel() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
-      <button
-        type="button"
-        className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-white backdrop-blur-sm transition-colors hover:bg-black/45 focus:outline-none focus:ring-2 focus:ring-white/90 sm:left-6 sm:h-12 sm:w-12"
-        aria-label="Show previous banner slide"
-        onClick={goToPreviousSlide}
-      >
-        <ChevronLeftIcon className="h-7 w-7" aria-hidden="true" />
-      </button>
-      <button
-        type="button"
-        className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-white backdrop-blur-sm transition-colors hover:bg-black/45 focus:outline-none focus:ring-2 focus:ring-white/90 sm:right-6 sm:h-12 sm:w-12"
-        aria-label="Show next banner slide"
-        onClick={goToNextSlide}
-      >
-        <ChevronRightIcon className="h-7 w-7" aria-hidden="true" />
-      </button>
+      {slideCount > 1 && (
+        <>
+          <button
+            type="button"
+            className="absolute left-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-white backdrop-blur-sm transition-colors hover:bg-black/45 focus:outline-none focus:ring-2 focus:ring-white/90 sm:left-6 sm:h-12 sm:w-12"
+            aria-label="Show previous banner slide"
+            onClick={goToPreviousSlide}
+          >
+            <ChevronLeftIcon className="h-7 w-7" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            className="absolute right-3 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-white backdrop-blur-sm transition-colors hover:bg-black/45 focus:outline-none focus:ring-2 focus:ring-white/90 sm:right-6 sm:h-12 sm:w-12"
+            aria-label="Show next banner slide"
+            onClick={goToNextSlide}
+          >
+            <ChevronRightIcon className="h-7 w-7" aria-hidden="true" />
+          </button>
+        </>
+      )}
     </section>
   );
 }
