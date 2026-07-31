@@ -53,6 +53,7 @@ const listGallery = (folder, filenames) => ({
 
 export const servicePortfolioImageFilenames = {
   interiors: [
+    "eHUIC8yn.webp",
     "QIFe4nW1.webp",
     "High-Pointe-Surgical-Center-7832.webp",
     "pvtLTcAM.webp",
@@ -69,7 +70,6 @@ export const servicePortfolioImageFilenames = {
     "The-Plastics-Clinic-.webp",
     "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Interior-17.webp",
     "The-Plastics-Clinic-5.webp",
-    "eHUIC8yn.webp",
     "Traeger-Grills_Salt-Lake-City_UT_02-218005_Interior-1.webp",
   ],
   exteriors: [
@@ -165,14 +165,34 @@ export const images = {
   portfolio: buildImageGroup(imageFolders.portfolio, {
     banner: "The-Plastics-Clinic-2.webp",
   }),
-  services: buildImageGroup(imageFolders.services, {
-    banner: "banner-img.webp",
-    interior: "QIFe4nW1.webp",
-    exterior: "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Exterior-15.webp",
-    plaster: "The-Plastics-Clinic-3.webp",
-    transparent: "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Interior-1.webp",
-    wallcoverings: "Western-10.webp",
-  }),
+  services: {
+    banner: r2Image(imageFolders.services, "banner-img.webp"),
+    interior: listImages(imageFolders.servicesInterior, [
+      "QIFe4nW1.webp",
+      "eHUIC8yn.webp",
+      "Western-23.webp",
+      "The-Plastics-Clinic-5.webp",
+    ]),
+    exterior: listImages(imageFolders.servicesExterior, [
+      "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Exterior-15.webp",
+    ]),
+    plaster: listImages(imageFolders.servicesPlaster, [
+      "The-Plastics-Clinic-7693.webp",
+      "The-Plastics-Clinic-7675.webp",
+      "The-Plastics-Clinic-3.webp",
+    ]),
+    transparent: listImages(imageFolders.servicesTransparent, [
+      "The-Worthington-Residences_Salt-Lake-City_UT_02-JV008_Interior-1.webp",
+    ]),
+    wallcoverings: listImages(imageFolders.servicesWallcoverings, [
+      "oxIjh79R.webp",
+      "Uk-y-yS5.webp",
+      "Western-10.webp",
+      "The-Plastics-Clinic-7782.webp",
+      "The-Plastics-Clinic-7798.webp",
+      "The-Plastics-Clinic-7777.webp",
+    ]),
+  },
 };
 
 export const portfolioCards = [
@@ -279,10 +299,7 @@ export const portfolioCards = [
     title: "U of U Helix Office Building",
     date: "2025",
     href: "/portfolio",
-    image: r2Image(
-      imageFolders.portfolio,
-      "U-of-U-Helix-Office-Building.jpg",
-    ),
+    image: r2Image(imageFolders.portfolio, "U-of-U-Helix-Office-Building.jpg"),
   },
   {
     title: "Base Camp Talisker Club",

@@ -1,5 +1,6 @@
 import PlaceholderImage from "@/components/PlaceholderImage";
 import Button from "@/components/Button";
+import ServiceImageCarousel from "@/components/ServiceImageCarousel";
 import { images } from "@/lib/images";
 
 const serviceSections = [
@@ -15,7 +16,7 @@ const serviceSections = [
       "Residential",
       "Multi-Family",
     ],
-    image: images.services.interior,
+    slides: images.services.interior,
     buttonText: "View More",
     buttonHref: "/portfolio/interior-painting",
   },
@@ -33,7 +34,7 @@ const serviceSections = [
       "Siding",
       "Residential",
     ],
-    image: images.services.exterior,
+    slides: images.services.exterior,
     buttonText: "View More",
     buttonHref: "/portfolio/exterior-coatings",
   },
@@ -43,7 +44,7 @@ const serviceSections = [
     description:
       "Discover the timeless beauty and versatility of plaster coatings with Fisher Painting Services.",
     bullets: ["Gypsum based", "Lime-based", "Micro-cement"],
-    image: images.services.plaster,
+    slides: images.services.plaster,
     buttonText: "View More",
     buttonHref: "/portfolio/plaster-coatings",
   },
@@ -53,7 +54,7 @@ const serviceSections = [
     description:
       "Enhance the natural beauty of your wood and other surfaces with our premium stain and transparent coating services.",
     bullets: ["Siding", "Case, base, doors", "CLT structure"],
-    image: images.services.transparent,
+    slides: images.services.transparent,
     buttonText: "View More",
     buttonHref: "/portfolio/stain-transparent-coatings",
   },
@@ -68,7 +69,7 @@ const serviceSections = [
       "Graphics & murals",
       "Felt & acoustics",
     ],
-    image: images.services.wallcoverings,
+    slides: images.services.wallcoverings,
     buttonText: "View More",
     buttonHref: "/portfolio/wallcoverings",
   },
@@ -136,16 +137,10 @@ export default function ServicesPage() {
                 </div>
 
                 <div className={reverse ? "order-1 lg:order-2" : "order-1 lg:order-1"}>
-                  <div className="relative min-h-[250px] overflow-hidden rounded-[10px] sm:min-h-[400px]">
-                    <PlaceholderImage
-                      src={service.image}
-                      alt={service.title}
-                      width={1200}
-                      height={900}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                  </div>
+                  <ServiceImageCarousel
+                    serviceName={service.title}
+                    slides={service.slides}
+                  />
                 </div>
               </div>
             </section>
