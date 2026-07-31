@@ -17,7 +17,9 @@ const serviceSections = [
       "Residential",
       "Multi-Family",
     ],
-    slides: [images.services.interior, null, null],
+    slides: images.services.interior,
+    buttonText: "View More",
+    buttonHref: "/portfolio/interior-painting",
   },
   {
     id: "exterior-coatings",
@@ -33,7 +35,9 @@ const serviceSections = [
       "Siding",
       "Residential",
     ],
-    slides: [images.services.exterior, null, null],
+    slides: images.services.exterior,
+    buttonText: "View More",
+    buttonHref: "/portfolio/exterior-coatings",
   },
   {
     id: "plaster-coatings",
@@ -41,7 +45,9 @@ const serviceSections = [
     description:
       "Discover the timeless beauty and versatility of plaster coatings with Fisher Painting Services.",
     bullets: ["Gypsum based", "Lime-based", "Micro-cement"],
-    slides: [images.services.plaster, null, null],
+    slides: images.services.plaster,
+    buttonText: "View More",
+    buttonHref: "/portfolio/plaster-coatings",
   },
   {
     id: "stain-transparent-coatings",
@@ -49,7 +55,9 @@ const serviceSections = [
     description:
       "Enhance the natural beauty of your wood and other surfaces with our premium stain and transparent coating services.",
     bullets: ["Siding", "Case, base, doors", "CLT structure"],
-    slides: [images.services.transparent, null, null],
+    slides: images.services.transparent,
+    buttonText: "View More",
+    buttonHref: "/portfolio/stain-transparent-coatings",
   },
   {
     id: "wallcoverings",
@@ -62,7 +70,9 @@ const serviceSections = [
       "Graphics & murals",
       "Felt & acoustics",
     ],
-    slides: [images.services.wallcoverings, null, null],
+    slides: images.services.wallcoverings,
+    buttonText: "View More",
+    buttonHref: "/portfolio/wallcoverings",
   },
 ];
 
