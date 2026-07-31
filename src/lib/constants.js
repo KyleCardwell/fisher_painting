@@ -11,7 +11,7 @@ export const fisherLocation = {
 export const teamMembers = [
   {
     name: "Brent Fisher",
-    role: "President",
+    role: "Founder",
     image: images.employees.brent,
     imageY: "10%",
   },
