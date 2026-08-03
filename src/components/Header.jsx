@@ -51,6 +51,8 @@ const portfolioLinks = [
 const desktopNavLinkClasses =
   "border-b-2 pb-1 text-base font-medium leading-[1.2] text-[#676767] transition-colors hover:text-fisherRed";
 
+const COMPACT_LOGO_SCROLL_Y = 64;
+
 function isNavItemActive(pathname, href) {
   return href === "/"
     ? pathname === "/"
@@ -147,88 +149,93 @@ export default function Header() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 8);
-      setLogoCompact(window.scrollY > 64);
+      const scrollY = window.scrollY;
+
+      setScrolled(scrollY > 8);
+      setLogoCompact(scrollY > COMPACT_LOGO_SCROLL_Y);
     };
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header
-      className={clsx(
-        "sticky inset-x-0 top-0 z-50 bg-white transition-shadow duration-200",
-        scrolled ? "shadow-md" : "shadow-none",
-      )}
-    >
-      <div
+    <>
+      <header
         className={clsx(
-          "relative mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 transition-[min-height,padding] duration-500 sm:px-6 lg:gap-8 lg:px-8",
-          logoCompact
-            ? "lg:min-h-[100px] lg:py-5"
-            : "lg:min-h-[150px] lg:py-[30px]",
+          "fixed inset-x-0 top-0 z-50 bg-white transition-shadow duration-200",
+          scrolled ? "shadow-md" : "shadow-none",
         )}
       >
-        <div className="z-10 lg:hidden">
-          <Button
-            href="tel:+18016769222"
-            className="h-11 w-11 min-w-11 items-center justify-center p-0 text-white hover:text-white [&_svg]:block"
-            variant="red"
-            aria-label="Call Fisher Painting"
-          >
-            <PhoneIcon
-              className="h-5 w-5 shrink-0 fill-current text-white"
-              aria-hidden="true"
-            />
-          </Button>
-        </div>
-
-        <Link
-          href="/"
-          aria-label="Fisher Painting Inc Home"
-          className="absolute left-1/2 -translate-x-1/2 lg:static lg:shrink-0 lg:translate-x-0"
+        <div
+          className={clsx(
+            "relative mx-auto flex min-h-20 w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 transition-[min-height,padding] duration-500 sm:px-6 lg:gap-8 lg:px-8",
+            logoCompact
+              ? "lg:min-h-[100px] lg:py-5"
+              : "lg:min-h-[150px] lg:py-[30px]",
+          )}
         >
-          <AnimatedHeaderLogo compact={logoCompact} />
-        </Link>
+          <div className="z-10 lg:hidden">
+            <Button
+              href="tel:+18016769222"
+              className="h-11 w-11 min-w-11 items-center justify-center p-0 text-white hover:text-white [&_svg]:block"
+              variant="red"
+              aria-label="Call Fisher Painting"
+            >
+              <PhoneIcon
+                className="h-5 w-5 shrink-0 fill-current text-white"
+                aria-hidden="true"
+              />
+            </Button>
+          </div>
 
-        <nav className="hidden items-center gap-[35px] lg:flex">
-          <DesktopNavLink href="/" pathname={pathname}>
-            Home
-          </DesktopNavLink>
-          <DesktopNavLink href="/about" pathname={pathname}>
-            About
-          </DesktopNavLink>
-          <Dropdown
-            label="Services"
-            items={servicesLinks}
-            href="/services"
-            pathname={pathname}
-          />
-          <DesktopNavLink href="/portfolio" pathname={pathname}>
-            Portfolio
-          </DesktopNavLink>
-          <DesktopNavLink href="/careers" pathname={pathname}>
-            Careers
-          </DesktopNavLink>
-          <DesktopNavLink href="/contact" pathname={pathname}>
-            Contact
-          </DesktopNavLink>
-        </nav>
-
-        <div className="hidden items-center gap-4 lg:flex">
-          <Button
-            href="tel:+18016769222"
-            className="items-center gap-2"
-            variant="red"
+          <Link
+            href="/"
+            aria-label="Fisher Painting Inc Home"
+            className="absolute left-1/2 -translate-x-1/2 lg:static lg:shrink-0 lg:translate-x-0"
           >
-            <PhoneIcon className="h-4 w-4" />
-            (801) 676-9222
-          </Button>
-        </div>
+            <AnimatedHeaderLogo compact={logoCompact} />
+          </Link>
 
-        <MobileNav servicesLinks={servicesLinks} />
-      </div>
-    </header>
+          <nav className="hidden items-center gap-[35px] lg:flex">
+            <DesktopNavLink href="/" pathname={pathname}>
+              Home
+            </DesktopNavLink>
+            <DesktopNavLink href="/about" pathname={pathname}>
+              About
+            </DesktopNavLink>
+            <Dropdown
+              label="Services"
+              items={servicesLinks}
+              href="/services"
+              pathname={pathname}
+            />
+            <DesktopNavLink href="/portfolio" pathname={pathname}>
+              Portfolio
+            </DesktopNavLink>
+            <DesktopNavLink href="/careers" pathname={pathname}>
+              Careers
+            </DesktopNavLink>
+            <DesktopNavLink href="/contact" pathname={pathname}>
+              Contact
+            </DesktopNavLink>
+          </nav>
+
+          <div className="hidden items-center gap-4 lg:flex">
+            <Button
+              href="tel:+18016769222"
+              className="items-center gap-2"
+              variant="red"
+            >
+              <PhoneIcon className="h-4 w-4" />
+              (801) 676-9222
+            </Button>
+          </div>
+
+          <MobileNav servicesLinks={servicesLinks} />
+        </div>
+      </header>
+      <div aria-hidden="true" className="h-20 lg:h-[150px]" />
+    </>
   );
 }
