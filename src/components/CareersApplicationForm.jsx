@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Button from "@/components/Button";
 import TurnstileWidget from "@/components/TurnstileWidget";
 
-const maxResumeSize = 20 * 1024 * 1024;
+const maxResumeSize = 4 * 1024 * 1024;
 
 const initialFormData = {
   name: "",
@@ -33,7 +33,7 @@ function validateForm(values) {
   }
 
   if (values.resume && values.resume.size > maxResumeSize) {
-    errors.resume = "Resume must be 20 MB or smaller.";
+    errors.resume = "Resume must be 4 MB or smaller.";
   }
 
   return errors;
@@ -229,7 +229,7 @@ export default function CareersApplicationForm() {
             onChange={handleChange}
             className="block h-14 w-full cursor-pointer border border-[#d9d9d9] text-base text-[#676767] file:mr-4 file:h-full file:border-0 file:bg-[#f5f5f5] file:px-4 file:text-sm file:font-semibold file:text-[#1C1D1E] hover:file:bg-[#ededed] focus:outline-none focus:ring-2 focus:ring-fisherRed/15"
           />
-          <p className="mt-2 text-sm text-[#676767]">Max. file size: 20 MB.</p>
+          <p className="mt-2 text-sm text-[#676767]">Max. file size: 4 MB.</p>
           {errors.resume ? <p className="mt-1 text-xs text-red-600">{errors.resume}</p> : null}
         </div>
 

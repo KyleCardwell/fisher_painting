@@ -19,10 +19,10 @@ function getAllowedHostnames() {
 }
 
 export async function verifyTurnstileToken({ action, request, token }) {
-  const secretKey =
-    process.env.NODE_ENV === "development"
-      ? developmentSecretKey
-      : process.env.TURNSTILE_SECRET_KEY || "";
+  const isDevelopment = process.env.NODE_ENV === "development";
+  const secretKey = isDevelopment
+    ? developmentSecretKey
+    : process.env.TURNSTILE_SECRET_KEY || "";
   const allowedHostnames = getAllowedHostnames();
 
   if (!secretKey || allowedHostnames.length === 0 || !token || token.length > 2048) {
@@ -59,6 +59,13 @@ export async function verifyTurnstileToken({ action, request, token }) {
     }
 
     const result = await response.json();
+
+    // Cloudflare's dummy test keys return synthetic action/cData values.
+    // The dummy secret still verifies the token server-side and is only used locally.
+    if (isDevelopment) {
+      return result.success === true;
+    }
+
     const hostname = String(result.hostname || "").toLowerCase();
 
     return (

@@ -1,12 +1,27 @@
 import { NextResponse } from "next/server";
+import { sendEmail } from "@/lib/resend";
 import { verifyTurnstileToken } from "@/lib/turnstile";
 
-const maxResumeSize = 20 * 1024 * 1024;
+const maxResumeSize = 4 * 1024 * 1024;
+
+export const runtime = "nodejs";
 
 export async function POST(request) {
-  try {
-    const formData = await request.formData();
+  let formData;
 
+  try {
+    formData = await request.formData();
+  } catch {
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Invalid application payload.",
+      },
+      { status: 400 }
+    );
+  }
+
+  try {
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
     const phone = String(formData.get("phone") || "").trim();
@@ -21,7 +36,7 @@ export async function POST(request) {
       });
     }
 
-    if (!name || !email || !phone) {
+    if (!name || !email || !phone || !/^\S+@\S+\.\S+$/.test(email)) {
       return NextResponse.json(
         {
           success: false,
@@ -51,24 +66,52 @@ export async function POST(request) {
       return NextResponse.json(
         {
           success: false,
-          message: "Resume must be 20 MB or smaller.",
+          message: "Resume must be 4 MB or smaller.",
         },
         { status: 400 }
       );
     }
 
-    // TODO: Integrate with SendGrid, Resend, or a recruiting system for delivery.
+    const hasResume =
+      resume && typeof resume.arrayBuffer === "function" && resume.size > 0;
+    const attachments = hasResume
+      ? [
+          {
+            content: Buffer.from(await resume.arrayBuffer()).toString("base64"),
+            filename: String(resume.name || "resume").replace(/[^a-zA-Z0-9._ -]/g, "_"),
+          },
+        ]
+      : undefined;
+
+    await sendEmail({
+      attachments,
+      replyTo: email,
+      subject: `Job application from ${name.slice(0, 100)}`,
+      text: [
+        "New Fisher Painting job application",
+        "",
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Phone: ${phone}`,
+        `Resume: ${hasResume ? "Attached" : "Not provided"}`,
+        "",
+        "Message:",
+        String(formData.get("message") || "").trim() || "No message provided.",
+      ].join("\n"),
+    });
+
     return NextResponse.json({
       success: true,
       message: "Thank you! We'll be in touch soon.",
     });
-  } catch {
+  } catch (error) {
+    console.error("Careers form delivery failed:", error);
     return NextResponse.json(
       {
         success: false,
-        message: "Invalid application payload.",
+        message: "We couldn't send your application. Please try again or call us.",
       },
-      { status: 400 }
+      { status: 500 }
     );
   }
 }
