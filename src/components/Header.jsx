@@ -28,9 +28,9 @@ const servicesLinks = [
   {
     label: "Concrete",
     items: [
-      { label: "Stained Concrete" },
-      { label: "Polished Concrete" },
-      { label: "Epoxy Coatings" },
+      { label: "Stained Concrete", href: "/services/#stained-concrete" },
+      { label: "Polished Concrete", href: "/services/#polished-concrete" },
+      { label: "Epoxy Coatings", href: "/services/#epoxy-coatings" },
     ],
   },
   {

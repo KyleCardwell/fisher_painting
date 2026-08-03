@@ -74,6 +74,48 @@ const serviceSections = [
     buttonText: "View More",
     buttonHref: "/portfolio/wallcoverings",
   },
+  {
+    id: "epoxy-coatings",
+    title: "Epoxy Coatings",
+    description:
+      "Protect and enhance concrete floors with durable epoxy coating systems built for demanding commercial, industrial, and residential spaces.",
+    bullets: [
+      "Commercial & industrial floors",
+      "Decorative flake systems",
+      "Metallic finishes",
+      "High-performance topcoats",
+      "Surface preparation & repairs",
+    ],
+    slides: images.services.epoxyCoatings,
+  },
+  {
+    id: "polished-concrete",
+    title: "Polished Concrete",
+    description:
+      "Create a clean, modern, and low-maintenance surface with professionally polished concrete tailored to your space.",
+    bullets: [
+      "Commercial & retail floors",
+      "Industrial facilities",
+      "Custom sheen levels",
+      "Concrete densifying",
+      "Existing floor restoration",
+    ],
+    slides: images.services.polishedConcrete,
+  },
+  {
+    id: "stained-concrete",
+    title: "Stained Concrete",
+    description:
+      "Bring rich color and distinctive character to concrete surfaces with custom staining and protective finishing systems.",
+    bullets: [
+      "Interior concrete floors",
+      "Patios & walkways",
+      "Custom colors & effects",
+      "Acid & water-based stains",
+      "Protective clear finishes",
+    ],
+    slides: images.services.stainedConcrete,
+  },
 ];
 
 export default function ServicesPage() {
