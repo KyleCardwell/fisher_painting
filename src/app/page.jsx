@@ -14,6 +14,7 @@ const serviceCards = [
     href: "/services/#interior-painting",
     description:
       "Interior, Exterior & Stain ",
+    isNew: false,
   },
   {
     title: "Specialty",
@@ -21,6 +22,7 @@ const serviceCards = [
     href: "/services/#plaster-coatings",
     description:
       "Plaster Coatings & Wall Coverings",
+    isNew: false,
   },
   {
     title: "Concrete",
@@ -28,6 +30,7 @@ const serviceCards = [
     href: "/services/#polished-concrete",
     description:
       "Stained, Polished & Epoxy",
+    isNew: true,
   },
 ];
 
@@ -88,7 +91,16 @@ export default function HomePage() {
               key={card.title}
               className="group relative transition-transform duration-300 hover:-translate-y-1"
             >
-              <div className="overflow-hidden rounded-[10px]">
+              <div
+                className={`relative overflow-hidden rounded-[10px] ${
+                  card.isNew ? "border-[3px] border-fisherRed" : ""
+                }`}
+              >
+                {card.isNew ? (
+                  <span className="absolute right-0 top-0 z-10 bg-fisherRed px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-white">
+                    Now Offering
+                  </span>
+                ) : null}
                 <PlaceholderImage
                   src={card.image}
                   alt={card.title}
