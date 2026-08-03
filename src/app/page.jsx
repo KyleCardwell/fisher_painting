@@ -15,6 +15,7 @@ const serviceCards = [
     description:
       "Interior, Exterior & Stain ",
     isNew: false,
+    mobileFirst: false,
   },
   {
     title: "Specialty",
@@ -23,6 +24,7 @@ const serviceCards = [
     description:
       "Plaster Coatings & Wall Coverings",
     isNew: false,
+    mobileFirst: false,
   },
   {
     title: "Concrete",
@@ -31,6 +33,7 @@ const serviceCards = [
     description:
       "Stained, Polished & Epoxy",
     isNew: true,
+    mobileFirst: true,
   },
 ];
 
@@ -89,17 +92,21 @@ export default function HomePage() {
           {serviceCards.map((card) => (
             <article
               key={card.title}
-              className="group relative transition-transform duration-300 hover:-translate-y-1"
+              className={`group relative transition-transform duration-300 hover:-translate-y-1 ${
+                card.mobileFirst ? "order-first md:order-none" : ""
+              }`}
             >
-              <div
-                className={`relative overflow-hidden rounded-[10px] ${
-                  card.isNew ? "border-[3px] border-fisherRed" : ""
-                }`}
-              >
+              <div className="relative overflow-hidden rounded-[10px]">
                 {card.isNew ? (
-                  <span className="absolute right-0 top-0 z-10 bg-fisherRed px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-white">
-                    Now Offering
-                  </span>
+                  <>
+                    <span
+                      className="pointer-events-none absolute inset-0 z-10 rounded-[10px] border-[5px] border-fisherRed"
+                      aria-hidden="true"
+                    />
+                    <span className="absolute right-[5px] top-[5px] z-20 bg-fisherRed px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-white">
+                      Now Offering
+                    </span>
+                  </>
                 ) : null}
                 <PlaceholderImage
                   src={card.image}
