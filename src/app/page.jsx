@@ -6,7 +6,32 @@ import Button from "@/components/Button";
 import TeamCarousel from "@/components/TeamCarousel";
 import HomeHeroCarousel from "@/components/HomeHeroCarousel";
 
+
 const serviceCards = [
+  {
+    title: "Painting",
+    image: images.home.serviceExterior,
+    href: "/services/#interior-painting",
+    description:
+      "Interior, Exterior & Stain ",
+  },
+  {
+    title: "Specialty",
+    image: images.home.specialty,
+    href: "/services/#plaster-coatings",
+    description:
+      "Plaster Coatings & Wall Coverings",
+  },
+  {
+    title: "Concrete",
+    image: images.home.concrete,
+    href: "/services/#polished-concrete",
+    description:
+      "Stained, Polished & Epoxy",
+  },
+];
+
+const serviceCardsOld = [
   {
     title: "Interior Painting",
     image: images.home.serviceInterior,
@@ -78,7 +103,9 @@ export default function HomePage() {
                   {card.title}
                 </Link>
               </h3>
-              {/* <p className="mt-2 text-sm text-slate-600">{card.description}</p> */}
+              <p className="mt-2 text-center text-base leading-6 text-slate-600">
+                {card.description}
+              </p>
             </article>
           ))}
         </div>

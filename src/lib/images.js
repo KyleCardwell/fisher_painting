@@ -112,6 +112,8 @@ export const images = {
       serviceExterior: "DoTerra_new2.jpg",
       serviceEpoxy: "epoxy-coatings.webp",
       serviceWallcoverings: "The-Plastics-Clinic-7782.webp",
+      specialty: "The-Plastics-Clinic-7693.webp",
+      concrete: "polished concrete 2.avif",
     }),
     depositSmall1: r2Image(
       imageFolders.homeServices,
