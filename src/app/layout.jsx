@@ -12,9 +12,6 @@ const poppins = Poppins({
 export const metadata = {
   title: "Fisher Painting Inc",
   description: "Commercial and residential painting and coatings.",
-  icons: {
-    icon: "/images/logos/FP%20-%20Favicon.svg",
-  },
 };
 
 export default function RootLayout({ children }) {
