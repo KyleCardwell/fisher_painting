@@ -2,8 +2,8 @@
 
 import clsx from "clsx";
 
-const fullLogo = "/images/logos/Fisher Painting - Full.svg";
-const compactLogo = "/images/logos/FP - Black.svg";
+const fullLogo = "/brand/fisher-painting-full.svg";
+const compactLogo = "/brand/fp-black.svg";
 
 export default function AnimatedHeaderLogo({ compact = false }) {
   return (
