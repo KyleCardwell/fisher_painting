@@ -2,12 +2,36 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { Montserrat } from "next/font/google";
 import Button from "@/components/Button";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { images } from "@/lib/images";
 
+const montserrat = Montserrat({ subsets: ["latin"], weight: "600" });
+
+const newServiceCards = [
+  {
+    src: images.services.polishedConcrete[0],
+    alt: "Polished concrete floor",
+    title: "Polished Concrete",
+    clipPath: "polygon(0 0, 34.5% 0, 44.5% 100%, 10% 100%)",
+  },
+  {
+    src: images.services.stainedConcrete[0],
+    alt: "Stained concrete floor",
+    title: "Stained Concrete",
+    clipPath: "polygon(34.25% 0, 67.25% 0, 77.25% 100%, 44.25% 100%)",
+  },
+  {
+    src: images.services.epoxyCoatings[0],
+    alt: "Epoxy-coated floor",
+    title: "Epoxy Coatings",
+    clipPath: "polygon(67% 0, 100% 0, 100% 100%, 77% 100%)",
+  },
+];
+
 const SLIDE_INTERVAL_MS = 7000;
-const slideCount = 1;
+const slideCount = 3;
 
 export default function HomeHeroCarousel() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -88,49 +112,202 @@ export default function HomeHeroCarousel() {
           </div>
         </div>
 
-        {/* <div
+        {/* Diagonal partnership slide concept — retained for a future revision.
+        <div
           className={[
-            "absolute inset-0 flex items-center justify-center bg-[#f7f4ef] px-4 py-12 transition-opacity duration-700 sm:px-6 sm:py-20 lg:px-8",
+            "absolute inset-0 bg-white transition-opacity duration-700",
             activeSlide === 1
               ? "pointer-events-auto opacity-100"
               : "pointer-events-none opacity-0",
           ].join(" ")}
           aria-hidden={activeSlide !== 1}
         >
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(115deg,rgba(255,255,255,0.94)_0%,rgba(255,255,255,0.78)_45%,rgba(196,32,38,0.12)_100%)]" />
-          <div className="mx-auto grid w-full max-w-5xl items-center gap-8 text-center md:grid-cols-[1fr_auto_1fr] md:gap-10">
-            <div className="flex min-h-[160px] items-center justify-center rounded-lg bg-white/80 p-6 shadow-sm ring-1 ring-black/5">
-              <PlaceholderImage
-                src={images.logos.logoFull}
-                alt="Fisher Painting logo"
-                width={360}
-                height={180}
-                sizes="(max-width: 768px) 55vw, 280px"
-                className="h-auto max-h-32 w-auto object-contain"
-              />
+          <div className="grid h-full w-full grid-cols-[45%_55%] md:grid-cols-[1fr_2fr]">
+            <div className="relative z-10 flex h-full flex-col justify-center gap-[clamp(1rem,5vh,3.5rem)] overflow-hidden bg-white px-2 sm:px-5 lg:px-10">
+              <div className="flex items-center gap-[clamp(0.25rem,1vw,0.75rem)]">
+                <PlaceholderImage
+                  src="/brand/fp-black.svg"
+                  alt=""
+                  width={864}
+                  height={648}
+                  sizes="(max-width: 768px) 9vw, 120px"
+                  className="h-auto w-[clamp(2rem,8vw,7.5rem)] shrink-0 object-contain"
+                />
+                <h2
+                  className={`${montserrat.className} whitespace-nowrap text-[clamp(0.6rem,2.2vw,1.85rem)] font-semibold leading-none tracking-[-0.045em] text-black`}
+                  aria-label="Fisher Painting"
+                >
+                  <span aria-hidden="true" className="text-[1.17em]">
+                    F
+                  </span>
+                  <span aria-hidden="true">ISHER </span>
+                  <span aria-hidden="true" className="text-[1.17em]">
+                    P
+                  </span>
+                  <span aria-hidden="true">AINTING</span>
+                </h2>
+              </div>
+
+              <p className="ml-[clamp(1.25rem,3vw,3rem)] whitespace-nowrap text-[clamp(0.55rem,1.25vw,0.95rem)] font-semibold uppercase tracking-[0.15em] text-fisherRed">
+                Now partnering with
+              </p>
+
+              <div className="ml-[clamp(1rem,4vw,4rem)] flex items-center gap-[clamp(0.25rem,0.8vw,0.75rem)]">
+                <PlaceholderImage
+                  src="/brand/st_logo.png"
+                  alt=""
+                  width={3198}
+                  height={1432}
+                  sizes="(max-width: 768px) 10vw, 104px"
+                  className="h-auto w-[clamp(2rem,7vw,6.5rem)] shrink-0 object-contain"
+                />
+                <PlaceholderImage
+                  src="/brand/stone_touch_logo.png"
+                  alt="Stone Touch"
+                  width={4747}
+                  height={265}
+                  sizes="(max-width: 768px) 18vw, 176px"
+                  className="h-auto w-[clamp(3.5rem,12vw,11rem)] shrink-0 object-contain"
+                />
+              </div>
             </div>
 
-            <div className="flex flex-col items-center justify-center gap-4">
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-fisherRed">
-                Now Partnering With
-              </p>
-              <h2 className="text-4xl font-semibold leading-[1.1] text-primary sm:text-5xl lg:text-[3.5rem]">
-                Stone Touch
+            <div className="relative h-full min-w-0 overflow-hidden bg-white">
+              {newServiceCards.map((panel) => (
+                <div
+                  key={panel.alt}
+                  className="absolute inset-0"
+                  style={{ clipPath: panel.clipPath }}
+                >
+                  <PlaceholderImage
+                    src={panel.src}
+                    alt={panel.alt}
+                    fill
+                    sizes="(max-width: 768px) 55vw, 67vw"
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-black/5" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        */}
+
+        <div
+          className={[
+            "absolute inset-0 flex items-center justify-center bg-white px-3 py-3 transition-opacity duration-700 sm:px-6 sm:py-6",
+            activeSlide === 1
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0",
+          ].join(" ")}
+          aria-hidden={activeSlide !== 1}
+        >
+          <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-[clamp(0.75rem,4vh,3rem)]">
+            <div className="flex items-center justify-center gap-[clamp(0.5rem,2.25vw,2.5rem)] text-[clamp(1.35rem,4.8vw,5.25rem)]">
+              <PlaceholderImage
+                src="/brand/fp-black.svg"
+                alt=""
+                width={864}
+                height={648}
+                sizes="(max-width: 768px) 12vw, 132px"
+                className="h-[1.2em] w-auto shrink-0 object-contain"
+              />
+              <h2
+                className={`${montserrat.className} whitespace-nowrap text-[inherit] font-semibold leading-none tracking-[-0.045em] text-black`}
+                aria-label="Fisher Painting"
+              >
+                <span aria-hidden="true" className="text-[1.2em]">
+                  F
+                </span>
+                <span aria-hidden="true">ISHER </span>
+                <span aria-hidden="true" className="text-[1.2em]">
+                  P
+                </span>
+                <span aria-hidden="true">AINTING</span>
               </h2>
             </div>
 
-            <div className="flex min-h-[160px] items-center justify-center rounded-lg border border-dashed border-slate-300 bg-white/65 p-6 text-center shadow-sm">
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
-                  Stone Touch
-                </p>
-                <p className="mt-2 text-2xl font-semibold text-slate-700">
-                  Logo Placeholder
-                </p>
-              </div>
+            <p className="whitespace-nowrap text-center text-[clamp(0.8rem,1.6vw,1.4rem)] font-semibold uppercase tracking-[0.15em] text-fisherRed">
+              Now partnering with
+            </p>
+
+            <div className="flex items-center justify-center gap-[clamp(0.5rem,2.25vw,2.5rem)]">
+              <PlaceholderImage
+                src="/brand/st_logo.png"
+                alt=""
+                width={3198}
+                height={1432}
+                sizes="(max-width: 768px) 12vw, 108px"
+                className="h-[clamp(1rem,3.2vw,3rem)] w-auto shrink-0 object-contain"
+              />
+              <PlaceholderImage
+                src="/brand/stone_touch_logo.png"
+                alt="Stone Touch"
+                width={4747}
+                height={265}
+                sizes="(max-width: 768px) 60vw, 860px"
+                className="h-[clamp(1rem,3.2vw,3rem)] w-auto shrink-0 object-contain"
+              />
             </div>
           </div>
-        </div> */}
+        </div>
+
+        <div
+          className={[
+            "absolute inset-0 bg-[#f7f4ef] transition-opacity duration-700",
+            activeSlide === 2
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0",
+          ].join(" ")}
+          aria-hidden={activeSlide !== 2}
+        >
+          <div className="flex h-full w-full flex-col">
+            <div className="grid h-[62%] min-h-0 w-full grid-cols-3 gap-0">
+              {newServiceCards.map((service) => (
+                <div
+                  key={service.title}
+                  className="relative h-full min-w-0 overflow-hidden bg-slate-200"
+                >
+                  <PlaceholderImage
+                    src={service.src}
+                    alt={service.alt}
+                    fill
+                    sizes="33vw"
+                    className="object-cover object-center"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="grid w-full grid-cols-3 gap-0 pt-[clamp(0.5rem,2vh,1.25rem)]">
+              {newServiceCards.map((service) => (
+                <p
+                  key={service.title}
+                  className="px-1 text-center text-[clamp(0.65rem,1.8vw,1.5rem)] font-semibold leading-tight text-black"
+                  aria-label={service.title}
+                >
+                  {service.title.split(" ").map((word, index, words) => (
+                    <span
+                      key={word}
+                      aria-hidden="true"
+                      className="block sm:inline"
+                    >
+                      {word}
+                      {index < words.length - 1 && (
+                        <span className="hidden sm:inline"> </span>
+                      )}
+                    </span>
+                  ))}
+                </p>
+              ))}
+            </div>
+
+            <h2 className="mt-auto pb-[clamp(0.75rem,4vh,2.5rem)] text-center text-[clamp(1.3rem,4vw,3.75rem)] font-semibold leading-tight text-black">
+              Now Offering New Services
+            </h2>
+          </div>
+        </div>
       </div>
 
       {slideCount > 1 && (
