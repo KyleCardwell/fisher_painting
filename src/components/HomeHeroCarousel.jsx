@@ -255,7 +255,7 @@ export default function HomeHeroCarousel() {
 
         <div
           className={[
-            "absolute inset-0 bg-[#f7f4ef] transition-opacity duration-700",
+            "absolute inset-0 transition-opacity duration-700",
             activeSlide === 2
               ? "pointer-events-auto opacity-100"
               : "pointer-events-none opacity-0",
@@ -263,7 +263,7 @@ export default function HomeHeroCarousel() {
           aria-hidden={activeSlide !== 2}
         >
           <div className="flex h-full w-full flex-col">
-            <div className="grid h-[62%] min-h-0 w-full grid-cols-3 gap-0">
+            <div className="grid min-h-0 w-full flex-1 grid-cols-3 gap-0">
               {newServiceCards.map((service) => (
                 <div
                   key={service.title}
@@ -276,34 +276,30 @@ export default function HomeHeroCarousel() {
                     sizes="33vw"
                     className="object-cover object-center"
                   />
+                  <div className="absolute inset-x-0 bottom-0 bg-black/55 px-2 py-[clamp(0.4rem,1.4vh,0.9rem)]">
+                    <p
+                      className="text-center text-[clamp(0.65rem,1.65vw,1.3rem)] font-semibold leading-tight text-white"
+                      aria-label={service.title}
+                    >
+                      {service.title.split(" ").map((word, index, words) => (
+                        <span
+                          key={word}
+                          aria-hidden="true"
+                          className="block sm:inline"
+                        >
+                          {word}
+                          {index < words.length - 1 && (
+                            <span className="hidden sm:inline"> </span>
+                          )}
+                        </span>
+                      ))}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <div className="grid w-full grid-cols-3 gap-0 pt-[clamp(0.5rem,2vh,1.25rem)]">
-              {newServiceCards.map((service) => (
-                <p
-                  key={service.title}
-                  className="px-1 text-center text-[clamp(0.65rem,1.8vw,1.5rem)] font-semibold leading-tight text-black"
-                  aria-label={service.title}
-                >
-                  {service.title.split(" ").map((word, index, words) => (
-                    <span
-                      key={word}
-                      aria-hidden="true"
-                      className="block sm:inline"
-                    >
-                      {word}
-                      {index < words.length - 1 && (
-                        <span className="hidden sm:inline"> </span>
-                      )}
-                    </span>
-                  ))}
-                </p>
-              ))}
-            </div>
-
-            <h2 className="mt-auto pb-[clamp(0.75rem,4vh,2.5rem)] text-center text-[clamp(1.3rem,4vw,3.75rem)] font-semibold leading-tight text-black">
+            <h2 className="flex min-h-[clamp(3.5rem,8.5vh,6rem)] items-center justify-center bg-fisherRed px-3 text-center text-[clamp(1.1rem,3.2vw,2.8rem)] font-semibold leading-tight text-white">
               Now Offering New Services
             </h2>
           </div>

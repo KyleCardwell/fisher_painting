@@ -200,26 +200,22 @@ export const images = {
       "The-Plastics-Clinic-7798.webp",
       "The-Plastics-Clinic-7777.webp",
     ]),
-    epoxyCoatings: listImages(
-      imageFolders.servicesEpoxyCoatings,
-      ["epoxy coating 1.avif", "epoxy coating 2.avif"],
-    ),
-    polishedConcrete: listImages(
-      imageFolders.servicesPolishedConcrete,
-      [
-        "polished concrete 1.avif",
-        "polished concrete 2.avif",
-        "polished concrete 3.avif",
-      ],
-    ),
-    stainedConcrete: listImages(
-      imageFolders.servicesStainedConcrete,
-      [
-        "stained concrete 1.avif",
-        "stained concrete 2.avif",
-        "stained concrete 3.gif",
-      ],
-    ),
+    epoxyCoatings: listImages(imageFolders.servicesEpoxyCoatings, [
+      "epoxy_hangar.jpeg",
+      "epoxy coating 1.avif",
+      "epoxy coating 2.avif",
+    ]),
+    polishedConcrete: listImages(imageFolders.servicesPolishedConcrete, [
+      "polished concrete 1.avif",
+      "polished_concrete_hangar.jpeg",
+      "polished concrete 2.avif",
+      "polished concrete 3.avif",
+    ]),
+    stainedConcrete: listImages(imageFolders.servicesStainedConcrete, [
+      "stained concrete 1.avif",
+      "stained concrete 2.avif",
+      "stained concrete 3.gif",
+    ]),
   },
 };
 
