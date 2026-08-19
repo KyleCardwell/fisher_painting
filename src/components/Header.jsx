@@ -79,11 +79,16 @@ function DesktopNavLink({ href, children, pathname }) {
 function Dropdown({ label, items, href, pathname }) {
   const active = href && isNavItemActive(pathname, href);
 
+  const handleNavigationClick = (event) => {
+    event.currentTarget.blur();
+  };
+
   return (
     <div className="group relative">
       {href ? (
         <Link
           href={href}
+          onClick={handleNavigationClick}
           aria-current={active ? "page" : undefined}
           className={clsx(
             "inline-flex items-center gap-1",
@@ -120,6 +125,7 @@ function Dropdown({ label, items, href, pathname }) {
                   <Link
                     key={service.label}
                     href={service.href}
+                    onClick={handleNavigationClick}
                     className="block -translate-x-full bg-white px-4 py-[15px] text-base font-medium leading-[1.2] text-[#676767] shadow-[0_4px_14px_rgba(0,0,0,0.08)] transition-transform duration-300 ease-out hover:bg-fisherRed hover:text-white group-hover/category:translate-x-0 group-focus-within/category:translate-x-0"
                   >
                     {service.label}
