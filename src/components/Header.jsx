@@ -197,7 +197,7 @@ export default function Header() {
 
           <Link
             href="/"
-            aria-label="Fisher Painting Inc Home"
+            aria-label="Fisher Painting and Stone Touch Home"
             className="absolute left-1/2 -translate-x-1/2 lg:static lg:shrink-0 lg:translate-x-0"
           >
             <AnimatedHeaderLogo compact={logoCompact} />

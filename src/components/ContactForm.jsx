@@ -7,9 +7,14 @@ import TurnstileWidget from "@/components/TurnstileWidget";
 const serviceOptions = [
   "Interior Painting",
   "Exterior Coatings",
-  "Plaster Coatings",
   "Stain & Transparent Coatings",
+  "Plaster Coatings",
   "Wallcoverings",
+  "Concrete Sealing",
+  "Polished Concrete",
+  "Stained Concrete",
+  "Epoxy Coatings",
+  "Resinous Coatings",
   "Other",
 ];
 
@@ -32,6 +37,10 @@ function validateForm(values) {
     errors.email = "Email is required.";
   } else if (!/^\S+@\S+\.\S+$/.test(values.email)) {
     errors.email = "Please enter a valid email address.";
+  }
+
+  if (!values.serviceNeeded) {
+    errors.serviceNeeded = "Please select a service.";
   }
 
   if (!values.message.trim()) {
@@ -185,25 +194,35 @@ export default function ContactForm() {
           </div>
         </div>
 
-        {/* <div>
+        <div>
           <label htmlFor="serviceNeeded" className="mb-2 block text-sm font-semibold text-[#1C1D1E]">
-            Service Needed
+            Service <span className="text-red-600">(Required)</span>
           </label>
           <select
             id="serviceNeeded"
             name="serviceNeeded"
             value={formData.serviceNeeded}
             onChange={handleChange}
+            required
+            aria-invalid={Boolean(errors.serviceNeeded)}
+            aria-describedby={errors.serviceNeeded ? "serviceNeeded-error" : undefined}
             className="h-14 w-full border border-[#d9d9d9] px-4 text-base outline-none transition focus:border-fisherRed focus:ring-2 focus:ring-fisherRed/15"
           >
-            <option value="">Select a service</option>
+            <option value="" disabled>
+              Select a service
+            </option>
             {serviceOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
             ))}
           </select>
-        </div> */}
+          {errors.serviceNeeded ? (
+            <p id="serviceNeeded-error" className="mt-1 text-xs text-red-600">
+              {errors.serviceNeeded}
+            </p>
+          ) : null}
+        </div>
 
         <div>
           <label htmlFor="message" className="mb-2 block text-sm font-semibold text-[#1C1D1E]">
