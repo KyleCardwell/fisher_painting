@@ -100,9 +100,12 @@ export default function HomeHeroCarousel() {
                 Now Serving All of Utah
               </h1>
               <p className="mx-auto mt-4 max-w-2xl text-xl font-semibold leading-[1.2] text-white/90 sm:text-3xl lg:text-[2.5rem]">
-                And Surrounding Regions
+                And Surrounding Areas
               </p>
-              <Button href="/contact" className="mt-8" variant="red">
+              <p className="mx-auto mt-2 text-base font-medium text-white/80 sm:text-2xl">
+                St George Office Now Open
+              </p>
+              <Button href="/contact" className="mt-6" variant="red">
                 Request Quote
               </Button>
             </div>
