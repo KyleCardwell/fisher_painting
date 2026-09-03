@@ -25,11 +25,17 @@ export async function POST(request) {
     const message = String(body?.message || "").trim();
     const turnstileToken = String(body?.turnstileToken || "");
 
-    if (!name || !email || !message || !/^\S+@\S+\.\S+$/.test(email)) {
+    if (
+      !name ||
+      !email ||
+      !serviceNeeded ||
+      !message ||
+      !/^\S+@\S+\.\S+$/.test(email)
+    ) {
       return NextResponse.json(
         {
           success: false,
-          message: "Name, email, and message are required.",
+          message: "Name, email, service, and message are required.",
         },
         { status: 400 }
       );
