@@ -2,6 +2,7 @@ import ContactForm from "@/components/ContactForm";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { fisherLocation } from "@/lib/constants";
 import { images } from "@/lib/images";
+import PageBanner from "@/components/PageBanner";
 import {
   EnvelopeIcon,
   MapPinIcon,
@@ -59,23 +60,7 @@ function ContactCard({ card }) {
 export default function ContactPage() {
   return (
     <div className="bg-white">
-      <section className="relative isolate overflow-hidden px-5 py-[100px]">
-        <PlaceholderImage
-          src={images.contact.banner}
-          alt="Fisher Painting contact"
-          width={1920}
-          height={1080}
-          sizes="100vw"
-          priority
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 -z-10 bg-black/40" />
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="max-w-4xl text-4xl leading-[1.1] text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.2)] sm:text-5xl lg:text-6xl">
-            Contact
-          </h1>
-        </div>
-      </section>
+      <PageBanner title="Contact" />
 
       <section className="px-5 py-20 sm:py-[120px]">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 sm:gap-[60px]">

@@ -6,7 +6,38 @@ import Button from "@/components/Button";
 import TeamCarousel from "@/components/TeamCarousel";
 import HomeHeroCarousel from "@/components/HomeHeroCarousel";
 
+
 const serviceCards = [
+  {
+    title: "Painting",
+    image: images.home.serviceExterior,
+    href: "/services/#interior-painting",
+    description:
+      "Interior, Exterior & Stain ",
+    isNew: false,
+    mobileFirst: false,
+  },
+  {
+    title: "Specialty",
+    image: images.home.specialty,
+    href: "/services/#plaster-coatings",
+    description:
+      "Plaster Coatings & Wall Coverings",
+    isNew: false,
+    mobileFirst: false,
+  },
+  {
+    title: "Concrete",
+    image: images.home.concrete,
+    href: "/services/#polished-concrete",
+    description:
+      "Stained, Polished & Epoxy",
+    isNew: true,
+    mobileFirst: true,
+  },
+];
+
+const serviceCardsOld = [
   {
     title: "Interior Painting",
     image: images.home.serviceInterior,
@@ -61,9 +92,22 @@ export default function HomePage() {
           {serviceCards.map((card) => (
             <article
               key={card.title}
-              className="group relative transition-transform duration-300 hover:-translate-y-1"
+              className={`group relative transition-transform duration-300 hover:-translate-y-1 ${
+                card.mobileFirst ? "order-first md:order-none" : ""
+              }`}
             >
-              <div className="overflow-hidden rounded-[10px]">
+              <div className="relative overflow-hidden rounded-[10px]">
+                {card.isNew ? (
+                  <>
+                    <span
+                      className="pointer-events-none absolute inset-0 z-10 rounded-[10px] border-[5px] border-fisherRed"
+                      aria-hidden="true"
+                    />
+                    <span className="absolute right-[5px] top-[5px] z-20 bg-fisherRed px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-white">
+                      Now Offering
+                    </span>
+                  </>
+                ) : null}
                 <PlaceholderImage
                   src={card.image}
                   alt={card.title}
@@ -78,7 +122,9 @@ export default function HomePage() {
                   {card.title}
                 </Link>
               </h3>
-              {/* <p className="mt-2 text-sm text-slate-600">{card.description}</p> */}
+              <p className="mt-2 text-center text-base leading-6 text-slate-600">
+                {card.description}
+              </p>
             </article>
           ))}
         </div>

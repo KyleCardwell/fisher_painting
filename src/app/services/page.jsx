@@ -2,6 +2,7 @@ import PlaceholderImage from "@/components/PlaceholderImage";
 import Button from "@/components/Button";
 import ServiceImageCarousel from "@/components/ServiceImageCarousel";
 import { images } from "@/lib/images";
+import PageBanner from "@/components/PageBanner";
 
 const serviceSections = [
   {
@@ -19,6 +20,7 @@ const serviceSections = [
     slides: images.services.interior,
     buttonText: "View More",
     buttonHref: "/portfolio/interior-painting",
+    isNew: false,
   },
   {
     id: "exterior-coatings",
@@ -37,16 +39,7 @@ const serviceSections = [
     slides: images.services.exterior,
     buttonText: "View More",
     buttonHref: "/portfolio/exterior-coatings",
-  },
-  {
-    id: "plaster-coatings",
-    title: "Plaster Coatings",
-    description:
-      "Discover the timeless beauty and versatility of plaster coatings with Fisher Painting Services.",
-    bullets: ["Gypsum based", "Lime-based", "Micro-cement"],
-    slides: images.services.plaster,
-    buttonText: "View More",
-    buttonHref: "/portfolio/plaster-coatings",
+    isNew: false,
   },
   {
     id: "stain-transparent-coatings",
@@ -57,6 +50,63 @@ const serviceSections = [
     slides: images.services.transparent,
     buttonText: "View More",
     buttonHref: "/portfolio/stain-transparent-coatings",
+    isNew: false,
+  },
+  {
+    id: "plaster-coatings",
+    title: "Plaster Coatings",
+    description:
+      "Discover the timeless beauty and versatility of plaster coatings with Fisher Painting Services.",
+    bullets: ["Gypsum based", "Lime-based", "Micro-cement"],
+    slides: images.services.plaster,
+    buttonText: "View More",
+    buttonHref: "/portfolio/plaster-coatings",
+    isNew: false,
+  },
+  {
+    id: "polished-concrete",
+    title: "Polished Concrete",
+    description:
+      "Create a clean, modern, and low-maintenance surface with professionally polished concrete tailored to your space.",
+    bullets: [
+      "Commercial & retail floors",
+      "Industrial facilities",
+      "Custom sheen levels",
+      "Concrete densifying",
+      "Existing floor restoration",
+    ],
+    slides: images.services.polishedConcrete,
+    isNew: true,
+  },
+  {
+    id: "stained-concrete",
+    title: "Stained Concrete",
+    description:
+      "Bring rich color and distinctive character to concrete surfaces with custom staining and protective finishing systems.",
+    bullets: [
+      "Interior concrete floors",
+      "Patios & walkways",
+      "Custom colors & effects",
+      "Acid & water-based stains",
+      "Protective clear finishes",
+    ],
+    slides: images.services.stainedConcrete,
+    isNew: true,
+  },
+  {
+    id: "epoxy-coatings",
+    title: "Epoxy Coatings",
+    description:
+      "Protect and enhance concrete floors with durable epoxy coating systems built for demanding commercial, industrial, and residential spaces.",
+    bullets: [
+      "Commercial & industrial floors",
+      "Decorative flake systems",
+      "Metallic finishes",
+      "High-performance topcoats",
+      "Surface preparation & repairs",
+    ],
+    slides: images.services.epoxyCoatings,
+    isNew: true,
   },
   {
     id: "wallcoverings",
@@ -72,29 +122,14 @@ const serviceSections = [
     slides: images.services.wallcoverings,
     buttonText: "View More",
     buttonHref: "/portfolio/wallcoverings",
+    isNew: false,
   },
 ];
 
 export default function ServicesPage() {
   return (
     <div className="bg-white">
-      <section className="relative isolate flex min-h-[320px] items-center justify-center overflow-hidden px-5 py-[100px] text-left">
-        <PlaceholderImage
-          src={images.services.banner}
-          alt="Fisher Painting Inc services background"
-          width={1920}
-          height={1080}
-          sizes="100vw"
-          priority
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 -z-10 bg-black/40" />
-        <div className="mx-auto w-full max-w-7xl">
-          <h1 className="text-4xl font-normal leading-[1.2] text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.2)] sm:text-5xl lg:text-[3.75rem]">
-            Services
-          </h1>
-        </div>
-      </section>
+      <PageBanner title="Services" />
 
       <div>
         {serviceSections.map((service, index) => {
@@ -114,9 +149,16 @@ export default function ServicesPage() {
                     reverse ? "order-2 lg:order-1" : "order-2 lg:order-2"
                   }`}
                 >
-                  <h2 className="max-w-[12ch] text-[2.5rem] font-normal leading-[1.2] text-slate-900 sm:max-w-none lg:text-5xl">
-                    {service.title}
-                  </h2>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                    <h2 className="max-w-[12ch] text-[2.5rem] font-normal leading-[1.2] text-slate-900 sm:max-w-none lg:text-5xl">
+                      {service.title}
+                    </h2>
+                    {service.isNew ? (
+                      <span className="bg-fisherRed px-3 py-1 text-sm font-semibold tracking-[0.08em] text-white">
+                        NEW
+                      </span>
+                    ) : null}
+                  </div>
                   <div className="mt-5 text-xl font-normal leading-[1.5] text-slate-900">
                     <p>{service.description}</p>
                   </div>
@@ -125,15 +167,9 @@ export default function ServicesPage() {
                       <li key={`${service.id}-${bullet}`}>{bullet}</li>
                     ))}
                   </ul>
-                  {service.buttonText ? (
-                    <Button
-                      href={service.buttonHref}
-                      className="mt-7"
-                      variant="red"
-                    >
-                      {service.buttonText}
-                    </Button>
-                  ) : null}
+                  <Button href="/contact" className="mt-7" variant="red">
+                    Request Quote
+                  </Button>
                 </div>
 
                 <div className={reverse ? "order-1 lg:order-2" : "order-1 lg:order-1"}>

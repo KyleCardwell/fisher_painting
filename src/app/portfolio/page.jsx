@@ -1,24 +1,11 @@
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { images, portfolioCards } from "@/lib/images";
+import PageBanner from "@/components/PageBanner";
 
 export default function PortfolioPage() {
   return (
     <div className="bg-light">
-      <section className="relative isolate overflow-hidden py-24 sm:py-28">
-        <PlaceholderImage
-          src={images.portfolio.banner}
-          alt="Fisher Painting Inc portfolio"
-          width={1920}
-          height={1080}
-          sizes="100vw"
-          priority
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 -z-10 bg-black/55" />
-        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl text-white sm:text-5xl">Portfolio</h1>
-        </div>
-      </section>
+      <PageBanner title="Portfolio" />
 
       <section className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">

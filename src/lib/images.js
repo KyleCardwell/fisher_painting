@@ -31,6 +31,9 @@ export const imageFolders = {
   servicesPlaster: "root/services/plaster-coatings",
   servicesTransparent: "root/services/stain-transparent-coatings",
   servicesWallcoverings: "root/services/wallcoverings",
+  servicesEpoxyCoatings: "root/services/epoxy_coatings",
+  servicesPolishedConcrete: "root/services/polished_concrete",
+  servicesStainedConcrete: "root/services/stained_concrete",
 };
 
 export const r2Image = (folder, filename) =>
@@ -91,6 +94,9 @@ export const servicePortfolioImageFilenames = {
     "The-Plastics-Clinic-7798.webp",
     "The-Plastics-Clinic-7777.webp",
   ],
+  epoxyCoatings: [],
+  polishedConcrete: [],
+  stainedConcrete: [],
 };
 
 export const images = {
@@ -106,6 +112,8 @@ export const images = {
       serviceExterior: "DoTerra_new2.jpg",
       serviceEpoxy: "epoxy-coatings.webp",
       serviceWallcoverings: "The-Plastics-Clinic-7782.webp",
+      specialty: "The-Plastics-Clinic-7693.webp",
+      concrete: "polished concrete 2.avif",
     }),
     depositSmall1: r2Image(
       imageFolders.homeServices,
@@ -191,6 +199,22 @@ export const images = {
       "The-Plastics-Clinic-7782.webp",
       "The-Plastics-Clinic-7798.webp",
       "The-Plastics-Clinic-7777.webp",
+    ]),
+    epoxyCoatings: listImages(imageFolders.servicesEpoxyCoatings, [
+      "epoxy_hangar.jpeg",
+      "epoxy coating 1.avif",
+      "epoxy coating 2.avif",
+    ]),
+    polishedConcrete: listImages(imageFolders.servicesPolishedConcrete, [
+      "polished concrete 1.avif",
+      "polished_concrete_hangar.jpeg",
+      "polished concrete 2.avif",
+      "polished concrete 3.avif",
+    ]),
+    stainedConcrete: listImages(imageFolders.servicesStainedConcrete, [
+      "stained concrete 1.avif",
+      "stained concrete 2.avif",
+      "stained concrete 3.gif",
     ]),
   },
 };
@@ -463,5 +487,17 @@ export const portfolioImages = {
   wallcoveringsPortfolio: listGallery(
     imageFolders.servicesWallcoverings,
     servicePortfolioImageFilenames.wallcoverings,
+  ),
+  epoxyCoatingsPortfolio: listGallery(
+    imageFolders.servicesEpoxyCoatings,
+    servicePortfolioImageFilenames.epoxyCoatings,
+  ),
+  polishedConcretePortfolio: listGallery(
+    imageFolders.servicesPolishedConcrete,
+    servicePortfolioImageFilenames.polishedConcrete,
+  ),
+  stainedConcretePortfolio: listGallery(
+    imageFolders.servicesStainedConcrete,
+    servicePortfolioImageFilenames.stainedConcrete,
   ),
 };
