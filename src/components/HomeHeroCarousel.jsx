@@ -2,12 +2,9 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
-import { Montserrat } from "next/font/google";
 import Button from "@/components/Button";
 import PlaceholderImage from "@/components/PlaceholderImage";
 import { images } from "@/lib/images";
-
-const montserrat = Montserrat({ subsets: ["latin"], weight: "600" });
 
 const newServiceCards = [
   {
@@ -112,88 +109,6 @@ export default function HomeHeroCarousel() {
           </div>
         </div>
 
-        {/* Diagonal partnership slide concept — retained for a future revision.
-        <div
-          className={[
-            "absolute inset-0 bg-white transition-opacity duration-700",
-            activeSlide === 1
-              ? "pointer-events-auto opacity-100"
-              : "pointer-events-none opacity-0",
-          ].join(" ")}
-          aria-hidden={activeSlide !== 1}
-        >
-          <div className="grid h-full w-full grid-cols-[45%_55%] md:grid-cols-[1fr_2fr]">
-            <div className="relative z-10 flex h-full flex-col justify-center gap-[clamp(1rem,5vh,3.5rem)] overflow-hidden bg-white px-2 sm:px-5 lg:px-10">
-              <div className="flex items-center gap-[clamp(0.25rem,1vw,0.75rem)]">
-                <PlaceholderImage
-                  src="/brand/fp-black.svg"
-                  alt=""
-                  width={864}
-                  height={648}
-                  sizes="(max-width: 768px) 9vw, 120px"
-                  className="h-auto w-[clamp(2rem,8vw,7.5rem)] shrink-0 object-contain"
-                />
-                <h2
-                  className={`${montserrat.className} whitespace-nowrap text-[clamp(0.6rem,2.2vw,1.85rem)] font-semibold leading-none tracking-[-0.045em] text-black`}
-                  aria-label="Fisher Painting"
-                >
-                  <span aria-hidden="true" className="text-[1.17em]">
-                    F
-                  </span>
-                  <span aria-hidden="true">ISHER </span>
-                  <span aria-hidden="true" className="text-[1.17em]">
-                    P
-                  </span>
-                  <span aria-hidden="true">AINTING</span>
-                </h2>
-              </div>
-
-              <p className="ml-[clamp(1.25rem,3vw,3rem)] whitespace-nowrap text-[clamp(0.55rem,1.25vw,0.95rem)] font-semibold uppercase tracking-[0.15em] text-fisherRed">
-                Now partnering with
-              </p>
-
-              <div className="ml-[clamp(1rem,4vw,4rem)] flex items-center gap-[clamp(0.25rem,0.8vw,0.75rem)]">
-                <PlaceholderImage
-                  src="/brand/st_logo.png"
-                  alt=""
-                  width={3198}
-                  height={1432}
-                  sizes="(max-width: 768px) 10vw, 104px"
-                  className="h-auto w-[clamp(2rem,7vw,6.5rem)] shrink-0 object-contain"
-                />
-                <PlaceholderImage
-                  src="/brand/stone_touch_logo.png"
-                  alt="Stone Touch"
-                  width={4747}
-                  height={265}
-                  sizes="(max-width: 768px) 18vw, 176px"
-                  className="h-auto w-[clamp(3.5rem,12vw,11rem)] shrink-0 object-contain"
-                />
-              </div>
-            </div>
-
-            <div className="relative h-full min-w-0 overflow-hidden bg-white">
-              {newServiceCards.map((panel) => (
-                <div
-                  key={panel.alt}
-                  className="absolute inset-0"
-                  style={{ clipPath: panel.clipPath }}
-                >
-                  <PlaceholderImage
-                    src={panel.src}
-                    alt={panel.alt}
-                    fill
-                    sizes="(max-width: 768px) 55vw, 67vw"
-                    className="object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-black/5" />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        */}
-
         <div
           className={[
             "absolute inset-0 flex items-center justify-center bg-white px-3 py-3 transition-opacity duration-700 sm:px-6 sm:py-6",
@@ -203,53 +118,29 @@ export default function HomeHeroCarousel() {
           ].join(" ")}
           aria-hidden={activeSlide !== 1}
         >
-          <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-[clamp(0.75rem,4vh,3rem)]">
-            <div className="flex items-center justify-center gap-[clamp(0.5rem,2.25vw,2.5rem)] text-[clamp(1.35rem,4.8vw,5.25rem)]">
-              <PlaceholderImage
-                src="/brand/fp-black.svg"
-                alt=""
-                width={864}
-                height={648}
-                sizes="(max-width: 768px) 12vw, 132px"
-                className="h-[1.2em] w-auto shrink-0 object-contain"
-              />
-              <h2
-                className={`${montserrat.className} whitespace-nowrap text-[inherit] font-semibold leading-none tracking-[-0.045em] text-black`}
-                aria-label="Fisher Painting"
-              >
-                <span aria-hidden="true" className="text-[1.2em]">
-                  F
-                </span>
-                <span aria-hidden="true">ISHER </span>
-                <span aria-hidden="true" className="text-[1.2em]">
-                  P
-                </span>
-                <span aria-hidden="true">AINTING</span>
-              </h2>
-            </div>
+          <div className="mx-auto flex h-full w-full max-w-7xl flex-col items-center justify-center gap-[clamp(0.5rem,2.5vh,1.75rem)]">
+            <PlaceholderImage
+              src="/brand/st_logo.png"
+              alt=""
+              width={3198}
+              height={1432}
+              sizes="(max-width: 640px) 48vw, 368px"
+              className="h-auto w-[clamp(10rem,25vw,23rem)] shrink-0 object-contain"
+            />
 
-            <p className="whitespace-nowrap text-center text-[clamp(0.8rem,1.6vw,1.4rem)] font-semibold uppercase tracking-[0.15em] text-fisherRed">
-              Now partnering with
+            <PlaceholderImage
+              src="/brand/stone_touch_logo.png"
+              alt="Stone Touch"
+              width={4747}
+              height={265}
+              sizes="(max-width: 640px) 88vw, 832px"
+              className="mb-[clamp(0.5rem,2vh,1.25rem)] h-auto w-[min(88vw,52rem)] shrink-0 object-contain"
+            />
+
+            <p className="max-w-5xl text-center text-[clamp(0.85rem,1.75vw,1.5rem)] font-semibold leading-snug text-slate-800">
+              Now offering: concrete sealer, concrete polish, epoxy coatings,
+              resinous coatings
             </p>
-
-            <div className="flex items-center justify-center gap-[clamp(0.5rem,2.25vw,2.5rem)]">
-              <PlaceholderImage
-                src="/brand/st_logo.png"
-                alt=""
-                width={3198}
-                height={1432}
-                sizes="(max-width: 768px) 12vw, 108px"
-                className="h-[clamp(1rem,3.2vw,3rem)] w-auto shrink-0 object-contain"
-              />
-              <PlaceholderImage
-                src="/brand/stone_touch_logo.png"
-                alt="Stone Touch"
-                width={4747}
-                height={265}
-                sizes="(max-width: 768px) 60vw, 860px"
-                className="h-[clamp(1rem,3.2vw,3rem)] w-auto shrink-0 object-contain"
-              />
-            </div>
           </div>
         </div>
 
