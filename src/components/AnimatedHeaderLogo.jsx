@@ -2,8 +2,8 @@
 
 import clsx from "clsx";
 
-const fullLogo = "/brand/fisher-painting-full.svg";
-const compactLogo = "/brand/fp-black.svg";
+const fpLogo = "/brand/fp-black.svg";
+const stoneTouchLogo = "/brand/st_logo.png";
 
 export default function AnimatedHeaderLogo({ compact = false }) {
   return (
@@ -12,15 +12,19 @@ export default function AnimatedHeaderLogo({ compact = false }) {
       aria-hidden="true"
     >
       <img
-        src={compactLogo}
+        src={fpLogo}
         alt=""
-        className="animated-header-logo__mobile"
+        width="864"
+        height="648"
+        className="animated-header-logo__fp"
       />
-      <img src={fullLogo} alt="" className="animated-header-logo__full" />
+      <span className="animated-header-logo__divider" />
       <img
-        src={compactLogo}
+        src={stoneTouchLogo}
         alt=""
-        className="animated-header-logo__compact"
+        width="3198"
+        height="1432"
+        className="animated-header-logo__st"
       />
     </span>
   );
