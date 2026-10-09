@@ -57,6 +57,7 @@ export default function ContactForm() {
   const [toast, setToast] = useState(null);
   const [turnstileToken, setTurnstileToken] = useState("");
   const turnstileRef = useRef(null);
+  const submittingRef = useRef(false);
 
   useEffect(() => {
     if (!toast) {
@@ -83,6 +84,7 @@ export default function ContactForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (submittingRef.current) return;
 
     const validationErrors = validateForm(formData);
 
@@ -97,6 +99,7 @@ export default function ContactForm() {
       return;
     }
 
+    submittingRef.current = true;
     try {
       setIsSubmitting(true);
       const response = await fetch("/api/contact", {
@@ -125,6 +128,7 @@ export default function ContactForm() {
         message: error.message || "Something went wrong. Please try again.",
       });
     } finally {
+      submittingRef.current = false;
       setIsSubmitting(false);
       setTurnstileToken("");
       turnstileRef.current?.reset();
