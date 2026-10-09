@@ -46,6 +46,7 @@ export default function CareersApplicationForm() {
   const [toast, setToast] = useState(null);
   const [turnstileToken, setTurnstileToken] = useState("");
   const turnstileRef = useRef(null);
+  const submittingRef = useRef(false);
 
   useEffect(() => {
     if (!toast) {
@@ -73,7 +74,9 @@ export default function CareersApplicationForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (submittingRef.current) return;
 
+    const form = event.currentTarget;
     const validationErrors = validateForm(formData);
 
     if (!turnstileToken) {
@@ -87,6 +90,7 @@ export default function CareersApplicationForm() {
       return;
     }
 
+    submittingRef.current = true;
     try {
       setIsSubmitting(true);
 
@@ -113,7 +117,7 @@ export default function CareersApplicationForm() {
         throw new Error(result.message || "Unable to send your application.");
       }
 
-      event.currentTarget.reset();
+      form.reset();
       setFormData(initialFormData);
       setErrors({});
       setToast({ type: "success", message: result.message || "Application sent successfully." });
@@ -123,6 +127,7 @@ export default function CareersApplicationForm() {
         message: error.message || "Something went wrong. Please try again.",
       });
     } finally {
+      submittingRef.current = false;
       setIsSubmitting(false);
       setTurnstileToken("");
       turnstileRef.current?.reset();
